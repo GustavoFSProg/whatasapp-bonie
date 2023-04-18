@@ -22,7 +22,7 @@ body {
 
 .sidebar {
   display: flex;
-  width: 35%;
+  width: 45%;
   max-width: 415px;
   flex-direction: column;
   border-right: 1px solid #ddd;
@@ -65,15 +65,16 @@ header {
 .search-input {
   display: flex;
   margin-top: 5px;
-  width: 19.1rem;
-  margin-left: 16px;
+  width: 22.4rem;
+    margin-left: 18px;
   height: 27px;
 }
 
 input {
   display: flex;
   /* margin-top: 20px; */
-  width: 19rem;
+  width: 22.4rem;
+    /* width: 700px; */
   border: none;
   height: 29px;
   border-radius: 10px;
