@@ -1,0 +1,59 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+ 
+  text-align: center;
+}
+
+*{
+  box-sizing: border-box;
+
+}
+
+body{
+  background-color: #d2dbdc;
+  margin: 0px;
+  font-family: 'Segoe UI, Helvetica neue, Helvetica, Lucida, Arial';
+}
+.app-window{
+  display: flex;
+  height: 100vh;
+  background-color: #EDEDED;
+}
+
+
+.sidebar{
+    display: flex;
+  width: 25%;
+  max-width: 415px;
+  flex-direction: column;
+  border-right:  1px solid #DDD;
+  background-color: lightgray;
+  }
+
+  header{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+  }
+
+  .header-avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .header-buttons{
+    display: flex;
+  }
+
+
+.contentarea {
+  display: flex;
+  width: 100%;
+  background-color: gray;
+  flex-direction: column;
+  border-right: 1px solid #DDD;
+}
