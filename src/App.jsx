@@ -1,8 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import avatar from './assets/avatar.png'
+// import { BsFillChatLeftTextFill } from 'react-icons/bs'
+// import { MdOutlineDonutLarge } from 'react-icons/md'
+
+import DonutLargeIcon from '@mui/icons-material/DonutLarge'
+import ChatIcon from '@mui/icons-material/Chat'
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="app-window">
@@ -10,7 +16,18 @@ function App() {
         <header >
           <img className="header-avatar" src={avatar} alt="avatar" />
           
-          <div className="header-buttons">botoes</div>
+          <div className="header-buttons">
+
+            <div className="header-btn">
+              <DonutLargeIcon size="28" color="blue" />
+              <ChatIcon size="28" color="blue" />
+              <MoreVertIcon size="28" color="blue" />
+
+
+
+            </div>
+
+          </div>
 
         </header>
         

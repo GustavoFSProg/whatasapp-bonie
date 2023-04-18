@@ -1,59 +1,63 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
- 
+
   text-align: center;
 }
 
-*{
+* {
   box-sizing: border-box;
-
 }
 
-body{
+body {
   background-color: #d2dbdc;
   margin: 0px;
   font-family: 'Segoe UI, Helvetica neue, Helvetica, Lucida, Arial';
 }
-.app-window{
+.app-window {
   display: flex;
   height: 100vh;
-  background-color: #EDEDED;
+  background-color: #ededed;
 }
 
-
-.sidebar{
-    display: flex;
+.sidebar {
+  display: flex;
   width: 25%;
   max-width: 415px;
   flex-direction: column;
-  border-right:  1px solid #DDD;
+  border-right: 1px solid #ddd;
   background-color: lightgray;
-  }
+}
 
-  header{
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
-  }
+header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
 
-  .header-avatar{
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  .header-buttons{
-    display: flex;
-  }
+.header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.header-buttons {
+  display: flex;
+}
 
+.header-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 7.4rem;
+
+}
 
 .contentarea {
   display: flex;
   width: 100%;
   background-color: gray;
   flex-direction: column;
-  border-right: 1px solid #DDD;
+  border-right: 1px solid #ddd;
 }
