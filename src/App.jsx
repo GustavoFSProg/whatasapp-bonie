@@ -32,11 +32,9 @@ function App() {
           <input type="text" />
         </div>
 
-
         <div className="chatlist">
           <img className="header-avatar" src={avatar} alt="avatar" />
-          <div className='chat-list-container'>
-
+          <div className="chat-list-container">
             <span style={{ marginLeft: '-18px', fontFamily: 'Arial', fontSize: '17px' }}>
               Fulano
             </span>
@@ -45,9 +43,6 @@ function App() {
               Mensagem
             </span>
           </div>
-
-
-
         </div>
       </div>
 
