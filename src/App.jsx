@@ -39,7 +39,10 @@ function App() {
               Fulano
             </span>
 
-            <span style={{ marginLeft: '0px', fontFamily: 'Arial', fontSize: '14px' }}>
+            <span style={{
+              marginTop: '3px', marginLeft: '-2px',
+              fontFamily: 'Arial', fontSize: '14px'
+            }}>
               Mensagem
             </span>
           </div>
