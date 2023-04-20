@@ -49,7 +49,25 @@ function App() {
         </div>
       </div>
 
-      <div className="contentarea">contentarea</div>
+      <div className="contentarea">
+        <div style={{ display: 'flex', width: '100%', justifyContent: 'f', color: 'black', height: '4rem', background: 'white' }}>
+          <img className="header-avatar" src={avatar} alt="avatar" style={{
+            width: '3.5rem',
+            height: '3.4rem', marginLeft: '10px',
+            marginTop: '4px',
+
+          }} />
+          <p style={{
+            marginLeft: '7px',
+            marginTop: '21px',
+
+            fontFamily: 'Arial', fontSize: '17px'
+          }}>
+            Fulano
+          </p>
+
+        </div>
+      </div>
     </div>
   )
 }
