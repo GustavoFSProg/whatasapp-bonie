@@ -117,11 +117,11 @@ function App() {
           </div>
           <div>
             <input type="text" placeholder='Mensagem'
-              style={{ width: '43.7rem', height: '2.4rem', paddingLeft: '15px' }} />
+              style={{ width: '43.7rem', fontSize: '15px', height: '2.4rem', paddingLeft: '15px' }} />
           </div>
 
           <MicIcon style={{
-            fontSize: '39px', display: 'flex', marginRight: '28px',
+            fontSize: '29px', display: 'flex', marginRight: '28px',
             color: '#737373'
           }} />
 
