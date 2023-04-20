@@ -99,7 +99,7 @@ function App() {
         </div>
 
         <div style={{
-          width: '100%', height: '4rem',
+          width: '100%', height: '4.4rem',
           marginTop: '-1px',
           background: '#e6e6e6',
           display: 'flex',
@@ -115,9 +115,13 @@ function App() {
               fontSize: '27px'
             }} />
           </div>
-          <h1>Torta</h1>
+          <div>
+            <input type="text" placeholder='Mensagem'
+              style={{ width: '43.7rem', height: '2.4rem', paddingLeft: '15px' }} />
+          </div>
+
           <MicIcon style={{
-            fontSize: '29px', display: 'flex', marginRight: '28px',
+            fontSize: '39px', display: 'flex', marginRight: '28px',
             color: '#737373'
           }} />
 
