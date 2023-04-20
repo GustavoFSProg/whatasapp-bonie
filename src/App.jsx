@@ -10,6 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import MoodIcon from '@mui/icons-material/Mood'
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MicIcon from '@mui/icons-material/Mic';
+import SearchIcon from '@mui/icons-material/Search';
 
 function App() {
   return (
@@ -32,7 +33,12 @@ function App() {
         </header>
 
         <div className="search-input">
-          <input type="text" />
+          <input type="text"
+            placeholder="Procurar ou começar uma nova conversa" />
+          <SearchIcon style={{
+            marginTop: '5px', marginLeft: '-352px',
+            fontSize: '23px'
+          }} />
         </div>
 
         <div className="chatlist">

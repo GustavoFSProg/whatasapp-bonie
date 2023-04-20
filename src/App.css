@@ -76,9 +76,10 @@ input {
   width: 22.4rem;
     /* width: 700px; */
   border: none;
-  height: 29px;
-  border-radius: 10px;
+  height: 35px;
+    border-radius: 6px;
   background: #cccccc;
+  padding-left: 36px;
 }
 .chatlist {
   height: 70px;
