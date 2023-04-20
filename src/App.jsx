@@ -7,6 +7,8 @@ import avatar from './assets/avatar.png'
 import DonutLargeIcon from '@mui/icons-material/DonutLarge'
 import ChatIcon from '@mui/icons-material/Chat'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import MoodIcon from '@mui/icons-material/Mood'
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 function App() {
   return (
@@ -98,8 +100,21 @@ function App() {
         <div style={{
           width: '100%', height: '4rem',
           marginTop: '-1px',
-          background: '#bfbfbf'
+          background: '#e6e6e6',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+
         }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+
+            <MoodIcon style={{ marginLeft: '18px', color: '#737373' }} fontSize="large" />
+            <AttachFileIcon style={{
+              marginLeft: '8px', color: '#737373',
+              fontSize: '27px'
+            }} />
+          </div>
+          <h1>Torta</h1>
 
         </div>
       </div>
