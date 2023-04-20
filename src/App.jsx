@@ -35,10 +35,18 @@ function App() {
         <div className="search-input">
           <input type="text"
             placeholder="Procurar ou começar uma nova conversa" />
-          <SearchIcon style={{
-            marginTop: '5px', marginLeft: '-352px',
+          <button style={{
+            marginTop: '5px',
+            marginLeft: '-352px',
+            background: 'none', border: 'none',
+            cursor: 'pointer'
+          }} onClick={() => alert("Clicado!!")}>
+
+            <SearchIcon style={{
+            // marginTop: '5px', marginLeft: '-352px',
             fontSize: '23px'
           }} />
+          </button>
         </div>
 
         <div className="chatlist">
