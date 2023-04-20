@@ -9,6 +9,7 @@ import ChatIcon from '@mui/icons-material/Chat'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import MoodIcon from '@mui/icons-material/Mood'
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import MicIcon from '@mui/icons-material/Mic';
 
 function App() {
   return (
@@ -115,6 +116,10 @@ function App() {
             }} />
           </div>
           <h1>Torta</h1>
+          <MicIcon style={{
+            fontSize: '29px', display: 'flex', marginRight: '28px',
+            color: '#737373'
+          }} />
 
         </div>
       </div>
