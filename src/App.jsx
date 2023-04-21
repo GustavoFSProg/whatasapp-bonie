@@ -11,8 +11,18 @@ import MoodIcon from '@mui/icons-material/Mood'
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MicIcon from '@mui/icons-material/Mic';
 import SearchIcon from '@mui/icons-material/Search';
+import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
+import EmojiPicker from 'emoji-picker-react'
 
 function App() {
+
+  const [clicked, setClicked] = useState(false)
+
+  function handleEmoji() {
+    setClicked(true)
+
+    return
+  }
   return (
     <div className="app-window">
       <div className="sidebar">
@@ -50,6 +60,8 @@ function App() {
         </div>
 
         <div className="chatlist">
+
+
           <img className="header-avatar" src={avatar} alt="avatar" />
           <div className="chat-list-container">
             <span style={{ marginLeft: '-18px', fontFamily: 'Arial', fontSize: '17px' }}>
@@ -67,7 +79,11 @@ function App() {
               Mensagem
             </span>
           </div>
+          {/* <a href={() =>
+            <EmojiPicker />
+          }> */}
         </div>
+
       </div>
 
       <div className="contentarea">
@@ -121,18 +137,33 @@ function App() {
           alignItems: 'center',
 
         }}>
+
           <div style={{ display: 'flex', alignItems: 'center' }}>
 
-            <MoodIcon style={{ marginLeft: '18px', color: '#737373' }} fontSize="large" />
+            {
+              clicked === true ? <EmojiPicker /> : <>
+                <MoodIcon onClick={() => setClicked(true)}
+                  style={{ marginLeft: '18px', color: '#737373' }} fontSize="large" />
             <AttachFileIcon style={{
               marginLeft: '8px', color: '#737373',
               fontSize: '27px'
             }} />
+              </>
+            }
+
+
           </div>
+
+
           <div>
             <input type="text" placeholder='Mensagem'
               style={{ width: '43.7rem', fontSize: '15px', height: '2.4rem', paddingLeft: '15px' }} />
           </div>
+
+          {/* <TextRotationDownIcon style={{
+            fontSize: '29px', display: 'flex', marginRight: '28px',
+            color: '#737373'
+          }} /> */}
 
           <MicIcon style={{
             fontSize: '29px', display: 'flex', marginRight: '28px',
