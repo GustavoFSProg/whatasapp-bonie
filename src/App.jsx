@@ -148,7 +148,7 @@ function App() {
                   marginTop: '-520px',
                 }}
               >
-                <EmojiPicker searchDisabled skinTonesDisabled width="25.3rem" />
+                <EmojiPicker searchDisabled skinTonesDisabled width="55rem" />
                 <ClearIcon
                   onClick={() => setClicked(false)}
                   style={{
@@ -215,6 +215,7 @@ function App() {
           }} /> */}
 
         </div>
+        <br />
       </div>
     </div>
   )
