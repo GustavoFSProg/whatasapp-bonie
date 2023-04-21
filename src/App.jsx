@@ -12,6 +12,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MicIcon from '@mui/icons-material/Mic';
 import SearchIcon from '@mui/icons-material/Search';
 import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
+import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker from 'emoji-picker-react'
 
 function App() {
@@ -143,10 +144,17 @@ function App() {
             {
               clicked === true ? <div style={{ marginTop: '-520px' }}>
                 <EmojiPicker />
+                <ClearIcon onClick={() => setClicked(false)}
+
+                  style={{
+                    cursor: 'pointer',
+                    color: '#737373', marginLeft: '-288px', fontSize: '35px'
+                  }} />
+
 
               </div> : <>
                 <MoodIcon onClick={() => setClicked(true)}
-                  style={{ marginLeft: '18px', color: '#737373' }} fontSize="large" />
+                    style={{ marginLeft: '18px', cursor: 'pointer', color: '#737373' }} fontSize="large" />
             <AttachFileIcon style={{
               marginLeft: '8px', color: '#737373',
               fontSize: '27px'
