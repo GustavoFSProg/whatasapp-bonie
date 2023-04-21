@@ -145,7 +145,7 @@ function App() {
             {clicked === true ? (
               <div
                 style={{
-                  marginTop: '-520px',
+                  marginTop: '-499px',
                 }}
               >
                 <EmojiPicker searchDisabled skinTonesDisabled width="55rem" />
