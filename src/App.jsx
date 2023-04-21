@@ -141,7 +141,10 @@ function App() {
           <div style={{ display: 'flex', alignItems: 'center' }}>
 
             {
-              clicked === true ? <EmojiPicker /> : <>
+              clicked === true ? <div style={{ marginTop: '-520px' }}>
+                <EmojiPicker />
+
+              </div> : <>
                 <MoodIcon onClick={() => setClicked(true)}
                   style={{ marginLeft: '18px', color: '#737373' }} fontSize="large" />
             <AttachFileIcon style={{
