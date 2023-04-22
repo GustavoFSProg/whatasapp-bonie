@@ -92,7 +92,6 @@ function App() {
           style={{
             display: 'flex',
             width: '100%',
-            justifyContent: 'f',
             color: 'black',
             height: '5rem',
             background: '#bfbfbf',
@@ -120,6 +119,23 @@ function App() {
           >
             Fulano
           </p>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginLeft: '590px'
+
+          }}>
+
+            <SearchIcon
+
+              style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }}
+
+            />
+            <MoreVertIcon color="blue"
+              style={{ display: 'flex', fontSize: '29px' }}
+            />
+          </div>
+
         </div>
         <div
           style={{
@@ -146,8 +162,10 @@ function App() {
               <div
                 style={{
                   marginTop: '-499px',
+                  width: 'auto'
                 }}
               >
+                {/* width="55rem" */}
                 <EmojiPicker searchDisabled skinTonesDisabled width="55rem" />
                 <ClearIcon
                   onClick={() => setClicked(false)}
