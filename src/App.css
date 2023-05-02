@@ -99,6 +99,7 @@ input {
   margin-left: -28px;
   align-items: left;
   justify-content: left;
+  cursor: pointer;
 
 }
 .main-container {

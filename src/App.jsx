@@ -21,6 +21,7 @@ function App() {
   const [listen, setListen] = useState(false)
   const [list, setList] = useState([])
   const [chatlist, setChatList] = useState(false)
+  const [intro, setIntro] = useState(false)
 
   function Listem() {
     setListen(true)
@@ -33,6 +34,11 @@ function App() {
   if (SpechRecgonition !== undefined) {
     recognition = new SpechRecgonition()
   }
+
+  function handleWindow() {
+    setIntro(true)
+  }
+
 
   function handleChatList() {
     setChatList(true)
@@ -108,11 +114,14 @@ function App() {
           </button>
         </div>
 
-        <div className="chatlist">
+        <div className="chatlist" >
           <img className="header-avatar" src={avatar} alt="avatar" />
-          <div className="chat-list-container">
-            <span style={{ marginLeft: '-18px', fontFamily: 'Arial', fontSize: '17px' }}>
-              Fulano
+          <div onClick={handleWindow} className="chat-list-container">
+            <span style={{
+              marginLeft: '-18px',
+              fontFamily: 'Arial', fontSize: '17px'
+            }}>
+              Boceta
             </span>
 
             <span
@@ -178,14 +187,12 @@ function App() {
             <MoreVertIcon color="blue" style={{ display: 'flex', fontSize: '29px' }} />
           </div>
         </div>
-        <div className="main-container"
-          style={{
+        {intro === false ? (<div className="main-container"
 
+        ></div>) : (<div style={{ visibility: 'hidden' }} className="main-container"
 
+        ></div>)} 
 
-            // background: '#fff7e6',
-          }}
-        ></div>
 
         <div
           style={{
@@ -197,13 +204,16 @@ function App() {
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
+
         >
+
           <div style={{ display: 'flex', alignItems: 'center' }}>
             {clicked === true ? (
               <div
                 style={{
                   marginTop: '-499px',
                   width: 'auto',
+                  fixed: 'bottom',
                 }}
               >
                 {/* width="55rem" */}
