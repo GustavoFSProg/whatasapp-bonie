@@ -14,9 +14,54 @@ import SearchIcon from '@mui/icons-material/Search'
 import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
 import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker from 'emoji-picker-react'
+// import intro from '../assets/intro.png'
 
 function App() {
   const [clicked, setClicked] = useState(false)
+  const [listen, setListen] = useState(false)
+  const [list, setList] = useState([])
+  const [chatlist, setChatList] = useState(false)
+
+  function Listem() {
+    setListen(true)
+  }
+
+  let recognition = undefined
+
+  let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
+
+  if (SpechRecgonition !== undefined) {
+    recognition = new SpechRecgonition()
+  }
+
+  function handleChatList() {
+    setChatList(true)
+  }
+
+  function handleMicClick() {
+    recognition.onstart = () => {
+      setListen(true)
+    }
+
+    if (recognition !== undefined) {
+      // recognition.onstart = () => {
+      //   setListen(true)
+      //   return alert("asdf")
+    }
+
+    recognition.onend = () => {
+      setListen(false)
+    }
+
+    recognition.onresult = (e) => {
+      setText(e.results[0][0].transcript)
+    }
+
+    recognition.start()
+
+    console.log(recognition)
+    return listen
+  }
 
   function handleEmoji() {
     setClicked(true)
@@ -94,7 +139,10 @@ function App() {
             width: '100%',
             color: 'black',
             height: '5rem',
-            background: '#bfbfbf',
+
+            // background: '#bfbfbf',
+            // background: 'url(` ${intro}`)',
+
           }}
         >
           <img
@@ -119,30 +167,23 @@ function App() {
           >
             Fulano
           </p>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginLeft: '590px'
-
-          }}>
-
-            <SearchIcon
-
-              style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }}
-
-            />
-            <MoreVertIcon color="blue"
-              style={{ display: 'flex', fontSize: '29px' }}
-            />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginLeft: '590px',
+            }}
+          >
+            <SearchIcon style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }} />
+            <MoreVertIcon color="blue" style={{ display: 'flex', fontSize: '29px' }} />
           </div>
-
         </div>
-        <div
+        <div className="main-container"
           style={{
-            width: '100%',
-            height: '90vh',
 
-            background: '#fff7e6',
+
+
+            // background: '#fff7e6',
           }}
         ></div>
 
@@ -157,12 +198,12 @@ function App() {
             alignItems: 'center',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             {clicked === true ? (
               <div
                 style={{
                   marginTop: '-499px',
-                  width: 'auto'
+                  width: 'auto',
                 }}
               >
                 {/* width="55rem" */}
@@ -183,7 +224,8 @@ function App() {
                   onClick={() => setClicked(true)}
                   style={{
                     marginLeft: '18px',
-                    cursor: 'pointer', color: '#737373'
+                    cursor: 'pointer',
+                    color: '#737373',
                   }}
                   fontSize="large"
                 />
@@ -193,45 +235,45 @@ function App() {
                     color: '#737373',
                     fontSize: '27px',
                   }}
-                />
-
+                  />
                 </>
-
             )}
           </div>
-          <div style={{
-            display: 'flex',
-            marginRight: '80px',
-          }}>
-
+          <div
+            style={{
+              display: 'flex',
+              marginRight: '80px',
+            }}
+          >
             <input
               type="text"
               placeholder="Mensagem"
               style={{
-                width: '42.9rem', fontSize: '15px',
-                height: '2.4rem', paddingLeft: '15px',
+                width: '42.9rem',
+                fontSize: '15px',
+                height: '2.4rem',
+                paddingLeft: '15px',
               }}
             />
           </div>
-
         </div>
-        <MicIcon
-          style={{
-            fontSize: '29px',
-            display: 'flex',
-            // marginRight: '28px',
-            marginLeft: '808px',
-            marginTop: '-48px',
-            color: '#737373',
-          }}
-        />
+        {/* <div onClick={() => handleMicClick()}> */}
+        <div onClick={() => Listem()}>
+          <MicIcon
+            style={{
+              fontSize: '29px',
+              display: 'flex',
+              marginLeft: '808px',
+              marginTop: '-48px',
+              color: listen === true ? '#126ece' : '#919191',
+            }}
+          />
+        </div>
         <div>
-
           {/* <TextRotationDownIcon style={{
             fontSize: '29px', display: 'flex', marginRight: '28px',
             color: '#737373'
           }} /> */}
-
         </div>
         <br />
       </div>
