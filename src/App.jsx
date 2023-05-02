@@ -257,7 +257,7 @@ function App() {
           >
             <input
               type="text"
-              placeholder="Mensagem"
+              placeholder="Digite sua Mensagem"
               style={{
                 width: '42.9rem',
                 fontSize: '15px',
@@ -268,7 +268,7 @@ function App() {
           </div>
         </div>
         {/* <div onClick={() => handleMicClick()}> */}
-        <div onClick={() => Listem()}>
+        <div onClick={() => handleMicClick()}>
           <MicIcon
             style={{
               fontSize: '29px',
