@@ -121,7 +121,7 @@ function App() {
               marginLeft: '-18px',
               fontFamily: 'Arial', fontSize: '17px'
             }}>
-              Boceta
+              Barbara
             </span>
 
             <span
