@@ -39,6 +39,9 @@ function App() {
   }
 
   const handleMicClick = () => {
+    recognition.start()
+
+
     if (recognition !== null) {
       recognition.onstart = () => {
         setListen(true)
@@ -52,7 +55,6 @@ function App() {
         setText(e.results[0][0].transcript)
       }
 
-      recognition.start()
 
       console.log(recognition)
     }
