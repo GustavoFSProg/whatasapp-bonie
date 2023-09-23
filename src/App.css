@@ -19,6 +19,12 @@ body {
   height: 100vh;
   background-color: #ededed;
 }
+@media screen and (max-width: 800px) {
+  .app-window {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 .sidebar {
   display: flex;
@@ -51,13 +57,12 @@ header {
   display: flex;
   justify-content: space-between;
   width: 7.4rem;
-
 }
 
 .contentarea {
   display: flex;
   width: 100%;
-  background-color: gray;
+  /* background-color: green; */
   flex-direction: column;
   border-right: 1px solid #ddd;
 }
@@ -66,7 +71,7 @@ header {
   display: flex;
   margin-top: 11px;
   width: 22.4rem;
-    margin-left: 18px;
+  margin-left: 18px;
   height: 27px;
 }
 
@@ -74,22 +79,22 @@ input {
   display: flex;
   /* margin-top: 20px; */
   width: 22.4rem;
-    /* width: 700px; */
+  /* width: 700px; */
   border: none;
   height: 35px;
-    border-radius: 6px;
+  border-radius: 6px;
   background: #cccccc;
   padding-left: 36px;
 }
 .chatlist {
   height: 70px;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 0 15px;
   background: #cccccc;
-  margin-top: 13px;
-
+    /* background: green; */
 }
 
 .chat-list-container {
@@ -99,5 +104,12 @@ input {
   margin-left: -28px;
   align-items: left;
   justify-content: left;
-
+  cursor: pointer;
+}
+.main-container {
+  background: url('./novo.jpg') no-repeat;
+  width: 100%;
+  height: 90vh;
+  background-size: contain;
+    margin-top: 30px;
 }

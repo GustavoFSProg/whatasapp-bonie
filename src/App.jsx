@@ -14,9 +14,49 @@ import SearchIcon from '@mui/icons-material/Search'
 import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
 import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker from 'emoji-picker-react'
+// import intro from '../assets/intro.png'
 
 function App() {
   const [clicked, setClicked] = useState(false)
+  const [listen, setListen] = useState(false)
+  const [list, setList] = useState([])
+  const [chatlist, setChatList] = useState(false)
+  const [intro, setIntro] = useState(false)
+
+  let recognition = null
+  let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
+
+  if (SpechRecgonition !== undefined) {
+    const recognition = new SpechRecgonition()
+  }
+
+  function handleWindow() {
+    setIntro(true)
+  }
+
+  function handleChatList() {
+    setChatList(true)
+  }
+
+  const handleMicClick = () => {
+    if (recognition !== null) {
+      recognition.onstart = () => {
+        setListen(true)
+      }
+
+      recognition.onend = () => {
+        setListen(false)
+      }
+
+      recognition.onresult = (e) => {
+        setText(e.results[0][0].transcript)
+      }
+
+      recognition.start()
+
+      console.log(recognition)
+    }
+  }
 
   function handleEmoji() {
     setClicked(true)
@@ -50,14 +90,14 @@ function App() {
               marginLeft: '-352px',
               background: 'none',
               border: 'none',
-              cursor: 'pointer',
+              cursor: 'pointer'
             }}
             onClick={() => alert('Clicado!!')}
           >
             <SearchIcon
               style={{
                 // marginTop: '5px', marginLeft: '-352px',
-                fontSize: '23px',
+                fontSize: '23px'
               }}
             />
           </button>
@@ -65,9 +105,15 @@ function App() {
 
         <div className="chatlist">
           <img className="header-avatar" src={avatar} alt="avatar" />
-          <div className="chat-list-container">
-            <span style={{ marginLeft: '-18px', fontFamily: 'Arial', fontSize: '17px' }}>
-              Fulano
+          <div onClick={handleWindow} className="chat-list-container">
+            <span
+              style={{
+                marginLeft: '-18px',
+                fontFamily: 'Arial',
+                fontSize: '17px'
+              }}
+            >
+              Barbara
             </span>
 
             <span
@@ -75,7 +121,7 @@ function App() {
                 marginTop: '3px',
                 marginLeft: '-2px',
                 fontFamily: 'Arial',
-                fontSize: '14px',
+                fontSize: '14px'
               }}
             >
               Mensagem
@@ -93,8 +139,10 @@ function App() {
             display: 'flex',
             width: '100%',
             color: 'black',
-            height: '5rem',
-            background: '#bfbfbf',
+            height: '5rem'
+
+            // background: '#bfbfbf',
+            // background: 'url(` ${intro}`)',
           }}
         >
           <img
@@ -105,7 +153,7 @@ function App() {
               width: '3.5rem',
               height: '3.4rem',
               marginLeft: '13px',
-              marginTop: '8px',
+              marginTop: '8px'
             }}
           />
           <p
@@ -114,37 +162,27 @@ function App() {
               marginTop: '27px',
 
               fontFamily: 'Arial',
-              fontSize: '17px',
+              fontSize: '17px'
             }}
           >
             Fulano
           </p>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginLeft: '590px'
-
-          }}>
-
-            <SearchIcon
-
-              style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }}
-
-            />
-            <MoreVertIcon color="blue"
-              style={{ display: 'flex', fontSize: '29px' }}
-            />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginLeft: '590px'
+            }}
+          >
+            <SearchIcon style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }} />
+            <MoreVertIcon color="blue" style={{ display: 'flex', fontSize: '29px' }} />
           </div>
-
         </div>
-        <div
-          style={{
-            width: '100%',
-            height: '90vh',
-
-            background: '#fff7e6',
-          }}
-        ></div>
+        {intro === false ? (
+          <div className="main-container"></div>
+        ) : (
+          <div style={{ visibility: 'hidden' }} className="main-container"></div>
+        )}
 
         <div
           style={{
@@ -154,15 +192,16 @@ function App() {
             background: '#e6e6e6',
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             {clicked === true ? (
               <div
                 style={{
                   marginTop: '-499px',
-                  width: 'auto'
+                  width: 'auto',
+                  fixed: 'bottom'
                 }}
               >
                 {/* width="55rem" */}
@@ -173,7 +212,7 @@ function App() {
                     cursor: 'pointer',
                     color: '#737373',
                     marginLeft: '-288px',
-                    fontSize: '30px',
+                    fontSize: '30px'
                   }}
                 />
               </div>
@@ -183,7 +222,8 @@ function App() {
                   onClick={() => setClicked(true)}
                   style={{
                     marginLeft: '18px',
-                    cursor: 'pointer', color: '#737373'
+                    cursor: 'pointer',
+                    color: '#737373'
                   }}
                   fontSize="large"
                 />
@@ -191,47 +231,47 @@ function App() {
                   style={{
                     marginLeft: '8px',
                     color: '#737373',
-                    fontSize: '27px',
+                    fontSize: '27px'
                   }}
                 />
-
-                </>
-
+              </>
             )}
           </div>
-          <div style={{
-            display: 'flex',
-            marginRight: '80px',
-          }}>
-
+          <div
+            style={{
+              display: 'flex',
+              marginRight: '80px'
+            }}
+          >
             <input
               type="text"
-              placeholder="Mensagem"
+              placeholder="Digite sua Mensagem"
               style={{
-                width: '42.9rem', fontSize: '15px',
-                height: '2.4rem', paddingLeft: '15px',
+                width: '42.9rem',
+                fontSize: '15px',
+                height: '2.4rem',
+                paddingLeft: '15px'
               }}
             />
           </div>
-
         </div>
-        <MicIcon
-          style={{
-            fontSize: '29px',
-            display: 'flex',
-            // marginRight: '28px',
-            marginLeft: '808px',
-            marginTop: '-48px',
-            color: '#737373',
-          }}
-        />
+        {/* <div onClick={() => handleMicClick()}> */}
+        <div onClick={() => handleMicClick()}>
+          <MicIcon
+            style={{
+              fontSize: '29px',
+              display: 'flex',
+              marginLeft: '808px',
+              marginTop: '-48px',
+              color: listen === true ? '#126ece' : '#919191'
+            }}
+          />
+        </div>
         <div>
-
           {/* <TextRotationDownIcon style={{
             fontSize: '29px', display: 'flex', marginRight: '28px',
             color: '#737373'
           }} /> */}
-
         </div>
         <br />
       </div>
