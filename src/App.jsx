@@ -23,50 +23,39 @@ function App() {
   const [chatlist, setChatList] = useState(false)
   const [intro, setIntro] = useState(false)
 
-  function Listem() {
-    setListen(true)
-  }
-
-  let recognition = undefined
-
+  let recognition = null
   let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
 
   if (SpechRecgonition !== undefined) {
-    recognition = new SpechRecgonition()
+    const recognition = new SpechRecgonition()
   }
 
   function handleWindow() {
     setIntro(true)
   }
 
-
   function handleChatList() {
     setChatList(true)
   }
 
-  function handleMicClick() {
-    recognition.onstart = () => {
-      setListen(true)
+  const handleMicClick = () => {
+    if (recognition !== null) {
+      recognition.onstart = () => {
+        setListen(true)
+      }
+
+      recognition.onend = () => {
+        setListen(false)
+      }
+
+      recognition.onresult = (e) => {
+        setText(e.results[0][0].transcript)
+      }
+
+      recognition.start()
+
+      console.log(recognition)
     }
-
-    if (recognition !== undefined) {
-      // recognition.onstart = () => {
-      //   setListen(true)
-      //   return alert("asdf")
-    }
-
-    recognition.onend = () => {
-      setListen(false)
-    }
-
-    recognition.onresult = (e) => {
-      setText(e.results[0][0].transcript)
-    }
-
-    recognition.start()
-
-    console.log(recognition)
-    return listen
   }
 
   function handleEmoji() {
@@ -101,26 +90,29 @@ function App() {
               marginLeft: '-352px',
               background: 'none',
               border: 'none',
-              cursor: 'pointer',
+              cursor: 'pointer'
             }}
             onClick={() => alert('Clicado!!')}
           >
             <SearchIcon
               style={{
                 // marginTop: '5px', marginLeft: '-352px',
-                fontSize: '23px',
+                fontSize: '23px'
               }}
             />
           </button>
         </div>
 
-        <div className="chatlist" >
+        <div className="chatlist">
           <img className="header-avatar" src={avatar} alt="avatar" />
           <div onClick={handleWindow} className="chat-list-container">
-            <span style={{
-              marginLeft: '-18px',
-              fontFamily: 'Arial', fontSize: '17px'
-            }}>
+            <span
+              style={{
+                marginLeft: '-18px',
+                fontFamily: 'Arial',
+                fontSize: '17px'
+              }}
+            >
               Barbara
             </span>
 
@@ -129,7 +121,7 @@ function App() {
                 marginTop: '3px',
                 marginLeft: '-2px',
                 fontFamily: 'Arial',
-                fontSize: '14px',
+                fontSize: '14px'
               }}
             >
               Mensagem
@@ -147,11 +139,10 @@ function App() {
             display: 'flex',
             width: '100%',
             color: 'black',
-            height: '5rem',
+            height: '5rem'
 
             // background: '#bfbfbf',
             // background: 'url(` ${intro}`)',
-
           }}
         >
           <img
@@ -162,7 +153,7 @@ function App() {
               width: '3.5rem',
               height: '3.4rem',
               marginLeft: '13px',
-              marginTop: '8px',
+              marginTop: '8px'
             }}
           />
           <p
@@ -171,7 +162,7 @@ function App() {
               marginTop: '27px',
 
               fontFamily: 'Arial',
-              fontSize: '17px',
+              fontSize: '17px'
             }}
           >
             Fulano
@@ -180,19 +171,18 @@ function App() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginLeft: '590px',
+              marginLeft: '590px'
             }}
           >
             <SearchIcon style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }} />
             <MoreVertIcon color="blue" style={{ display: 'flex', fontSize: '29px' }} />
           </div>
         </div>
-        {intro === false ? (<div className="main-container"
-
-        ></div>) : (<div style={{ visibility: 'hidden' }} className="main-container"
-
-        ></div>)} 
-
+        {intro === false ? (
+          <div className="main-container"></div>
+        ) : (
+          <div style={{ visibility: 'hidden' }} className="main-container"></div>
+        )}
 
         <div
           style={{
@@ -202,18 +192,16 @@ function App() {
             background: '#e6e6e6',
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
-
         >
-
           <div style={{ display: 'flex', alignItems: 'center' }}>
             {clicked === true ? (
               <div
                 style={{
                   marginTop: '-499px',
                   width: 'auto',
-                  fixed: 'bottom',
+                  fixed: 'bottom'
                 }}
               >
                 {/* width="55rem" */}
@@ -224,7 +212,7 @@ function App() {
                     cursor: 'pointer',
                     color: '#737373',
                     marginLeft: '-288px',
-                    fontSize: '30px',
+                    fontSize: '30px'
                   }}
                 />
               </div>
@@ -235,7 +223,7 @@ function App() {
                   style={{
                     marginLeft: '18px',
                     cursor: 'pointer',
-                    color: '#737373',
+                    color: '#737373'
                   }}
                   fontSize="large"
                 />
@@ -243,16 +231,16 @@ function App() {
                   style={{
                     marginLeft: '8px',
                     color: '#737373',
-                    fontSize: '27px',
+                    fontSize: '27px'
                   }}
-                  />
-                </>
+                />
+              </>
             )}
           </div>
           <div
             style={{
               display: 'flex',
-              marginRight: '80px',
+              marginRight: '80px'
             }}
           >
             <input
@@ -262,7 +250,7 @@ function App() {
                 width: '42.9rem',
                 fontSize: '15px',
                 height: '2.4rem',
-                paddingLeft: '15px',
+                paddingLeft: '15px'
               }}
             />
           </div>
@@ -275,7 +263,7 @@ function App() {
               display: 'flex',
               marginLeft: '808px',
               marginTop: '-48px',
-              color: listen === true ? '#126ece' : '#919191',
+              color: listen === true ? '#126ece' : '#919191'
             }}
           />
         </div>
