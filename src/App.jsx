@@ -15,11 +15,12 @@ import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
 import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker from 'emoji-picker-react'
 import whats from '../src/assets/whats-2.png'
+import MessageItem from './components/MessageItem'
 
 function App() {
   const [clicked, setClicked] = useState(false)
   const [listen, setListen] = useState(false)
-  const [list, setList] = useState([])
+  const [list, setList] = useState([{}, {}])
   const [chatlist, setChatList] = useState(false)
   const [intro, setIntro] = useState(false)
   const [text, setText] = useState('')
@@ -191,8 +192,13 @@ function App() {
             className="main-container">
 
             <div style={{ display: 'flex', color: 'black', alignItems: 'center' }}>
-
               CENTRO
+              {list.map((item, key) => (
+                <MessageItem
+                  key={key}
+                  data={item}
+                />
+              ))}
             </ div >
           </div>
         )}
