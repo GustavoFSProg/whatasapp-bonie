@@ -22,6 +22,7 @@ function App() {
   const [list, setList] = useState([])
   const [chatlist, setChatList] = useState(false)
   const [intro, setIntro] = useState(false)
+  const [text, setText] = useState('')
 
   let recognition = null
   let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
@@ -39,7 +40,6 @@ function App() {
   }
 
   const handleMicClick = () => {
-    recognition.start()
 
 
     if (recognition !== null) {
@@ -55,6 +55,7 @@ function App() {
         setText(e.results[0][0].transcript)
       }
 
+      recognition.start()
 
       console.log(recognition)
     }
@@ -247,7 +248,7 @@ function App() {
           >
             <input
               type="text"
-              placeholder="Digite sua Mensagem"
+              placeholder={text}
               style={{
                 width: '42.9rem',
                 fontSize: '15px',
