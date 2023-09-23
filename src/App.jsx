@@ -14,7 +14,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
 import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker from 'emoji-picker-react'
-// import intro from '../assets/intro.png'
+import whats from '../src/assets/whats-2.png'
 
 function App() {
   const [clicked, setClicked] = useState(false)
@@ -144,8 +144,6 @@ function App() {
             color: 'black',
             height: '5rem'
 
-            // background: '#bfbfbf',
-            // background: 'url(` ${intro}`)',
           }}
         >
           <img
@@ -180,11 +178,23 @@ function App() {
             <SearchIcon style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }} />
             <MoreVertIcon color="blue" style={{ display: 'flex', fontSize: '29px' }} />
           </div>
+
         </div>
+
         {intro === false ? (
-          <div className="main-container"></div>
+          <div className="main-container">
+            <img src={whats} alt="novo" width="898" />
+          </div>
         ) : (
-          <div style={{ visibility: 'hidden' }} className="main-container"></div>
+          <div
+            // style={{ visibility: 'hidden' }}
+            className="main-container">
+
+            <div style={{ display: 'flex', color: 'black', alignItems: 'center' }}>
+
+              CENTRO
+            </ div >
+          </div>
         )}
 
         <div
@@ -198,6 +208,8 @@ function App() {
             alignItems: 'center'
           }}
         >
+
+
           <div style={{ display: 'flex', alignItems: 'center' }}>
             {clicked === true ? (
               <div
