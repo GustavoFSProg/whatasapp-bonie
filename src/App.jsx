@@ -13,7 +13,7 @@ import MicIcon from '@mui/icons-material/Mic'
 import SearchIcon from '@mui/icons-material/Search'
 import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
 import ClearIcon from '@mui/icons-material/Clear'
-import EmojiPicker from 'emoji-picker-react'
+import EmojiPicker, { Emoji } from 'emoji-picker-react'
 import whats from '../src/assets/whats-2.png'
 import MessageItem from './components/MessageItem'
 
@@ -24,6 +24,8 @@ function App() {
   const [chatlist, setChatList] = useState(false)
   const [intro, setIntro] = useState(false)
   const [text, setText] = useState('')
+  const [emoji, setEmoji] = useState('')
+
 
   let recognition = null
   let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
@@ -62,10 +64,17 @@ function App() {
     }
   }
 
-  function handleEmoji() {
+  function handleOpenEmoji() {
     setClicked(true)
 
     return
+  }
+
+
+  function handleClickEmoji(e, emojiObject) {
+    setText(text + emojiObject.img)
+    console.log(emojiObject.emoji)
+
   }
   return (
     <div className="app-window">
@@ -225,8 +234,25 @@ function App() {
                   fixed: 'bottom'
                 }}
               >
-                {/* width="55rem" */}
-                <EmojiPicker searchDisabled skinTonesDisabled width="55rem" />
+                <Emoji size={120} unified={emoji.unified} />
+                <EmojiPicker
+                  emojiStyle="google"
+                  searchDisabled={false}
+                  lazyLoadEmojis={false}
+                  theme="dark"
+                  onEmojiClick={(e) => {
+                    setEmoji(e)
+                    console.log(e)
+                  }}
+
+                  searchPlaceHolder='Ara'
+                  previewConfig={{
+                    showPreview: true,
+                    defaultEmoji: '1f92a',
+                    defaultCaption: 'Bit emoji araaaa'
+                  }}
+                />
+
                 <ClearIcon
                   onClick={() => setClicked(false)}
                   style={{
@@ -262,11 +288,19 @@ function App() {
             style={{
               display: 'flex',
               marginRight: '80px'
+
             }}
+            onClick={handleOpenEmoji}
+
           >
+            {emoji.emoji}
+
             <input
               type="text"
-              placeholder={text}
+              placeholder={emoji.emoji}
+
+              onChange={e => setText(e.target.value)}
+              value={text}
               style={{
                 width: '42.9rem',
                 fontSize: '15px',
