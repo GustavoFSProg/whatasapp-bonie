@@ -71,9 +71,9 @@ function App() {
   }
 
 
-  function handleClickEmoji(e, emojiObject) {
-    setText(text + emojiObject.img)
-    console.log(emojiObject.emoji)
+  function handleClickEmoji(e) {
+    setText(e + emoji.emoji)
+    // console.log(emojiObject.emoji)
 
   }
   return (
@@ -229,12 +229,12 @@ function App() {
             {clicked === true ? (
               <div
                 style={{
-                  marginTop: '-499px',
+                  marginTop: '-487px',
                   width: 'auto',
                   fixed: 'bottom'
                 }}
               >
-                <Emoji size={120} unified={emoji.unified} />
+                <Emoji size={50} unified={emoji.unified} />
                 <EmojiPicker
                   emojiStyle="google"
                   searchDisabled={false}
@@ -290,17 +290,14 @@ function App() {
               marginRight: '80px'
 
             }}
-            onClick={handleOpenEmoji}
 
           >
-            {emoji.emoji}
-
             <input
               type="text"
-              placeholder={emoji.emoji}
-
-              onChange={e => setText(e.target.value)}
-              value={text}
+              placeholder="Digite uma mensagem!!"
+              id="text"
+              onChange={(e) => setText(e.target.value)}
+              value={text || emoji.emoji}
               style={{
                 width: '42.9rem',
                 fontSize: '15px',
