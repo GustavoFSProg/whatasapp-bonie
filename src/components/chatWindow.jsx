@@ -39,7 +39,7 @@ function Chatwindow() {
             alt="avatar"
             style={{
               width: '3.8rem',
-              height: '4rem',
+              height: '5rem',
               marginLeft: '13px',
               marginTop: '8px'
             }}
