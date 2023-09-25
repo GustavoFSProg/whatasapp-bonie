@@ -62,9 +62,12 @@ header {
 .contentarea {
   display: flex;
   width: 100%;
-  /* background-color: green; */
+  background-color: lightcyan;
   flex-direction: column;
   border-right: 1px solid #ddd;
+  align-items: center;
+  justify-content: center;
+  /* height: 5rem; */
 }
 
 .search-input {

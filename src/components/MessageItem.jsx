@@ -1,7 +1,10 @@
 
-function MessageItem() {
+function MessageItem({ data, user }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100px' }}>
+    <div style={{
+      display: 'flex',
+      justifyContent: user.id === data.author ? 'flex-end' : 'flex-start'
+    }}>
       <div>
         UM
       </div>

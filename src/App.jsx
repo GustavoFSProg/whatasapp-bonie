@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import avatar from './assets/avatar.png'
+import avatar1 from './assets/avatar-1.jpeg'
 // import { BsFillChatLeftTextFill } from 'react-icons/bs'
 // import { MdOutlineDonutLarge } from 'react-icons/md'
 
@@ -15,17 +16,15 @@ import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
 import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker, { Emoji } from 'emoji-picker-react'
 import whats from '../src/assets/whats-2.png'
-import MessageItem from './components/MessageItem'
+import Chatwindow from './components/chatWindow'
 
 function App() {
   const [clicked, setClicked] = useState(false)
   const [listen, setListen] = useState(false)
-  const [list, setList] = useState([{}, {}])
   const [chatlist, setChatList] = useState(false)
   const [intro, setIntro] = useState(false)
   const [text, setText] = useState('')
   const [emoji, setEmoji] = useState('')
-
 
   let recognition = null
   let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
@@ -43,8 +42,6 @@ function App() {
   }
 
   const handleMicClick = () => {
-
-
     if (recognition !== null) {
       recognition.onstart = () => {
         setListen(true)
@@ -70,11 +67,8 @@ function App() {
     return
   }
 
-
   function handleClickEmoji(e) {
     setText(e + emoji.emoji)
-    // console.log(emojiObject.emoji)
-
   }
   return (
     <div className="app-window">
@@ -140,76 +134,17 @@ function App() {
               Mensagem
             </span>
           </div>
-          {/* <a href={() =>
-            <EmojiPicker />
-          }> */}
+
         </div>
       </div>
 
       <div className="contentarea">
-        <div
-          style={{
-            display: 'flex',
-            width: '100%',
-            color: 'black',
-            height: '5rem'
-
-          }}
-        >
-          <img
-            className="header-avatar"
-            src={avatar}
-            alt="avatar"
-            style={{
-              width: '3.5rem',
-              height: '3.4rem',
-              marginLeft: '13px',
-              marginTop: '8px'
-            }}
-          />
-          <p
-            style={{
-              marginLeft: '12px',
-              marginTop: '27px',
-
-              fontFamily: 'Arial',
-              fontSize: '17px'
-            }}
-          >
-            Fulano
-          </p>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginLeft: '590px'
-            }}
-          >
-            <SearchIcon style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }} />
-            <MoreVertIcon color="blue" style={{ display: 'flex', fontSize: '29px' }} />
-          </div>
-
-        </div>
-
         {intro === false ? (
           <div className="main-container">
             <img src={whats} alt="novo" width="898" />
           </div>
         ) : (
-          <div
-            // style={{ visibility: 'hidden' }}
-            className="main-container">
-
-            <div style={{ display: 'flex', color: 'black', alignItems: 'center' }}>
-              CENTRO
-              {list.map((item, key) => (
-                <MessageItem
-                  key={key}
-                  data={item}
-                />
-              ))}
-            </ div >
-          </div>
+          <Chatwindow />
         )}
 
         <div
@@ -221,11 +156,15 @@ function App() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
+            // background: 'green'
           }}
         >
-
-
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
             {clicked === true ? (
               <div
                 style={{
@@ -244,8 +183,7 @@ function App() {
                     setEmoji(e)
                     console.log(e)
                   }}
-
-                  searchPlaceHolder='Ara'
+                  searchPlaceHolder="Ara"
                   previewConfig={{
                     showPreview: true,
                     defaultEmoji: '1f92a',
@@ -264,7 +202,7 @@ function App() {
                 />
               </div>
             ) : (
-              <>
+              <div style={{ display: 'flex' }}>
                 <MoodIcon
                   onClick={() => setClicked(true)}
                   style={{
@@ -281,52 +219,45 @@ function App() {
                     fontSize: '27px'
                   }}
                 />
-              </>
+                <input
+                  type="text"
+                  placeholder="Digite uma mensagem!!"
+                  id="text"
+                  onChange={(e) => setText(e.target.value)}
+                  value={text || emoji.emoji}
+                  style={{
+                    width: '42.9rem',
+                    fontSize: '15px',
+                    height: '2.4rem',
+                    paddingLeft: '15px'
+                  }}
+                />
+
+                <div onClick={() => handleMicClick()}>
+                  <MicIcon
+                    style={{
+                      fontSize: '29px',
+                      display: 'flex',
+                      marginLeft: '8px',
+                      marginTop: '4px',
+                      color: listen === true ? '#126ece' : '#919191'
+                    }}
+                  />
+                </div>
+              </div>
             )}
           </div>
-          <div
-            style={{
-              display: 'flex',
-              marginRight: '80px'
+        </div>
 
-            }}
-
-          >
-            <input
-              type="text"
-              placeholder="Digite uma mensagem!!"
-              id="text"
-              onChange={(e) => setText(e.target.value)}
-              value={text || emoji.emoji}
-              style={{
-                width: '42.9rem',
-                fontSize: '15px',
-                height: '2.4rem',
-                paddingLeft: '15px'
-              }}
-            />
-          </div>
-        </div>
-        {/* <div onClick={() => handleMicClick()}> */}
-        <div onClick={() => handleMicClick()}>
-          <MicIcon
-            style={{
-              fontSize: '29px',
-              display: 'flex',
-              marginLeft: '808px',
-              marginTop: '-48px',
-              color: listen === true ? '#126ece' : '#919191'
-            }}
-          />
-        </div>
-        <div>
-          {/* <TextRotationDownIcon style={{
-            fontSize: '29px', display: 'flex', marginRight: '28px',
-            color: '#737373'
-          }} /> */}
-        </div>
-        <br />
+        <div
+          style={{
+            display: 'flex',
+            marginRight: '80px'
+          }}
+        ></div>
       </div>
+
+      <br />
     </div>
   )
 }
