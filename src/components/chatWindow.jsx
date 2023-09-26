@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import MessageItem from './MessageItem'
-// import avatar from './assets/avatar.png'
 import avatar1 from '../assets/avatar-1.jpeg'
 
 import MoreVertIcon from '@mui/icons-material/MoreVert'
@@ -8,13 +7,13 @@ import SearchIcon from '@mui/icons-material/Search'
 import '../App.css'
 
 
-function Chatwindow() {
-  const [list, setList] = useState([{}, {}])
-  const [user, setUser] = useState({
-    id: 1231,
-    avatares: avatar1,
-    name: 'Gustavo Sohne'
-  })
+function Chatwindow({ user, data }) {
+  const [list, setList] = useState([{ author: 123, body: "Blablabla" },
+  { author: 123, body: "Blablabla" },
+  { author: 1234, body: "blueJeans" },
+  { author: 1234, body: "Eu de novo" },
+  ])
+
 
   return (
     <div
@@ -35,7 +34,7 @@ function Chatwindow() {
         >
           <img
             className="header-avatar"
-            src={user.avatares}
+            src={avatar1}
             alt="avatar"
             style={{
               width: '3.8rem',
@@ -68,12 +67,12 @@ function Chatwindow() {
         </div>
       </div>
 
-      <div style={{ display: 'flex', color: 'black', alignItems: 'center' }}>
-        CENTRO
-        {list.map((item, key) => (
-          <MessageItem key={key} data={item} user="author" />
-        ))}
-      </div>
+      {/* <div style={{ display: 'flex', color: 'black', alignItems: 'center' }}>
+        CENTRO */}
+      {list.map((item, key) => (
+        <MessageItem key={key} data={item} user={user} />
+      ))}
+      {/* </div> */}
     </div>
   )
 }

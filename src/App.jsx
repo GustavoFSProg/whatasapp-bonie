@@ -26,6 +26,17 @@ function App() {
   const [text, setText] = useState('')
   const [emoji, setEmoji] = useState('')
 
+  const [user, setUser] = useState({
+
+
+    id: 123,
+    avatares: { avatar1 },
+    name: 'Gustavo Sohne'
+
+  }
+
+  )
+
   let recognition = null
   let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
 
@@ -74,7 +85,7 @@ function App() {
     <div className="app-window">
       <div className="sidebar">
         <header>
-          <img className="header-avatar" src={avatar} alt="avatar" />
+          <img className="header-avatar" src={user.avatares} alt="avatar" />
 
           <div
             style={{ display: 'flex', flexDirection: 'column', height: '1.5rem', width: '7.8rem' }}
@@ -144,7 +155,7 @@ function App() {
             <img src={whats} alt="novo" width="898" />
           </div>
         ) : (
-          <Chatwindow />
+          <Chatwindow user={user} />
         )}
 
         <div
