@@ -67,12 +67,12 @@ function Chatwindow({ user, data }) {
         </div>
       </div>
 
-      {/* <div style={{ display: 'flex', color: 'black', alignItems: 'center' }}>
-        CENTRO */}
-      {list.map((item, key) => (
-        <MessageItem key={key} data={item} user={user} />
-      ))}
-      {/* </div> */}
+      <div style={{ marginTop: '50px' }}>
+
+        {list.map((item, key) => (
+          <MessageItem key={key} data={item} user={user} />
+        ))}
+      </div>
     </div>
   )
 }

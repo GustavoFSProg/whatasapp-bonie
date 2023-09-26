@@ -4,6 +4,7 @@ function MessageItem({ data, user }) {
     <div style={{
       display: 'flex',
       // flexDirection: 'column',
+      marginTop: '6px',
       justifyContent: user.id === data.author ? 'flex-end' : 'flex-start'
     }}>
       <div >
@@ -14,10 +15,10 @@ function MessageItem({ data, user }) {
           alignItems: 'center',
           background: user.id === data.author ? '#ccffcc' : '#c2d6d6',
           width: '10rem', height: '2rem',
-          marginTop: '15px',
+          // marginTop: '-7px',
           padding: '20px 20px',
-          marginLeft: '20px',
-          marginRight: '20px',
+          marginLeft: '70px',
+          marginRight: '70px',
           borderRadius: '10px'
         }}>
           {data.body}
