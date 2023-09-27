@@ -28,7 +28,6 @@ function App() {
 
   const [user, setUser] = useState({
 
-
     id: 123,
     avatares: { avatar1 },
     name: 'Gustavo Sohne'
@@ -150,6 +149,7 @@ function App() {
       </div>
 
       <div className="contentarea">
+
         {intro === false ? (
           <div className="main-container">
             <img src={whats} alt="novo" width="898" />
@@ -157,7 +157,6 @@ function App() {
         ) : (
           <Chatwindow user={user} />
         )}
-
         <div
           style={{
             width: '100%',

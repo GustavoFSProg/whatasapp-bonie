@@ -6,21 +6,31 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import SearchIcon from '@mui/icons-material/Search'
 import '../App.css'
 
-
 function Chatwindow({ user, data }) {
-  const [list, setList] = useState([{ author: 123, body: "Blablabla" },
-  { author: 123, body: "Blablabla" },
-  { author: 1234, body: "blueJeans" },
-  { author: 1234, body: "Eu de novo" },
+  const [list, setList] = useState([
+    { author: 123, body: 'Blablabla' },
+    { author: 123, body: 'Blablabla' },
+    { author: 1234, body: 'blueJeans' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' },
+    { author: 1234, body: 'Eu de novo' }
   ])
 
-
   return (
-    <div
-      // style={{ visibility: 'hidden' }}
-      className="main-container"
-    >
-      <div className="contentarea">
+    <>
+      <div>
         <div
           style={{
             display: 'flex',
@@ -28,8 +38,9 @@ function Chatwindow({ user, data }) {
             justifyContent: 'center',
             width: '100%',
             color: 'black',
-            height: '5rem',
-            paddingBottom: '37px'
+            height: '3rem',
+            paddingBottom: '37px',
+            marginTop: '45px'
           }}
         >
           <img
@@ -66,14 +77,18 @@ function Chatwindow({ user, data }) {
           </div>
         </div>
       </div>
+      <div
+        // style={{ visibility: 'hidden' }}
+        className="main-container"
+      >
 
-      <div style={{ marginTop: '50px' }}>
-
-        {list.map((item, key) => (
-          <MessageItem key={key} data={item} user={user} />
-        ))}
+        <div style={{ marginTop: '50px' }}>
+          {list.map((item, key) => (
+            <MessageItem key={key} data={item} user={user} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

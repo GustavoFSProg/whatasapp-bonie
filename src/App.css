@@ -9,6 +9,36 @@
   box-sizing: border-box;
 }
 
+.container-messages{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+   height: 2rem;
+  margin-top: 3px;
+  padding: 20px 20px;
+  margin-left: 70px;
+  margin-right: 70px;
+  border-radius: 10px;
+}
+
+.container-scroll{
+  overflow-y: scroll;
+  /* background: green */
+  
+}
+.container-scroll::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.container-scroll::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+.container-scroll::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
 body {
   background-color: #d2dbdc;
   margin: 0px;
@@ -109,12 +139,33 @@ input {
   justify-content: left;
   cursor: pointer;
 }
+
+
+
+
+
 .main-container {
   /* background: url('./novo.jpg') no-repeat; */
+  /* background: green; */
   background: #ffffcc;
+  overflow-y: scroll;
 
   width: 100%;
   height: 90vh;
   background-size: contain;
     margin-top: 30px;
+}
+
+
+
+.main-container::-webkit-scrollbar {
+  width: 0.55rem;
+}
+
+.main-container::-webkit-scrollbar-track {
+  background: gray;
+}
+
+.main-container::-webkit-scrollbar-thumb {
+  background: cyan;
 }
