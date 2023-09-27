@@ -36,7 +36,7 @@ function App() {
   const [user, setUser] = useState({
 
     id: 123,
-    avatares: { avatar1 },
+    avatares: avatar1,
     name: 'Gustavo Sohne'
 
   }
@@ -117,7 +117,7 @@ function App() {
     <div className="app-window">
       <div className="sidebar">
         {openConversas === true ? <NewChat /> : (
-          <header>
+          <header style={{ height: '7rem' }}>
             <img className="header-avatar" src={user.avatares} alt="avatar" />
 
             <div
