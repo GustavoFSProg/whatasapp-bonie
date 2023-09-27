@@ -92,7 +92,7 @@ header {
 .contentarea {
   display: flex;
   width: 100%;
-  background-color: lightcyan;
+  background-color: #d1e0e0;
   flex-direction: column;
   border-right: 1px solid #ddd;
   align-items: center;
@@ -149,7 +149,7 @@ input {
   /* background: green; */
   background: #ffffcc;
   overflow-y: scroll;
-
+  padding-bottom: 50px;
   width: 100%;
   height: 90vh;
   background-size: contain;
@@ -164,8 +164,11 @@ input {
 
 .main-container::-webkit-scrollbar-track {
   background: gray;
+
 }
 
 .main-container::-webkit-scrollbar-thumb {
-  background: cyan;
+  background: #679898;
+  border: none;
+
 }

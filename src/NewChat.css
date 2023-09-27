@@ -1,0 +1,17 @@
+.newChat{
+  display: flex;
+  width: 100%;
+  height: 7rem;
+  background-color: green;
+  color: white;
+}
+
+.newChat--headTitle{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center; 
+  height: 4rem;
+  margin-left: 30px;
+  margin-top: 50px;
+}

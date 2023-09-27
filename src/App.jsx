@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './NewChat.css'
 import avatar from './assets/avatar.png'
 import avatar1 from './assets/avatar-1.jpeg'
 // import { BsFillChatLeftTextFill } from 'react-icons/bs'
@@ -10,6 +11,7 @@ import ChatIcon from '@mui/icons-material/Chat'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import MoodIcon from '@mui/icons-material/Mood'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import MicIcon from '@mui/icons-material/Mic'
 import SearchIcon from '@mui/icons-material/Search'
 import TextRotationDownIcon from '@mui/icons-material/TextRotationDown'
@@ -17,6 +19,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker, { Emoji } from 'emoji-picker-react'
 import whats from '../src/assets/whats-2.png'
 import Chatwindow from './components/chatWindow'
+// import NewChat from './NewChat'
 
 function App() {
   const [clicked, setClicked] = useState(false)
@@ -25,6 +28,10 @@ function App() {
   const [intro, setIntro] = useState(false)
   const [text, setText] = useState('')
   const [emoji, setEmoji] = useState('')
+  const [openConversas, setOpenConversas] = useState(false)
+
+
+
 
   const [user, setUser] = useState({
 
@@ -45,6 +52,11 @@ function App() {
 
   function handleWindow() {
     setIntro(true)
+  }
+
+
+  function setOpenFalas() {
+    setOpenConversas(true)
   }
 
   function handleChatList() {
@@ -80,24 +92,49 @@ function App() {
   function handleClickEmoji(e) {
     setText(e + emoji.emoji)
   }
+
+
+  function NewChat() {
+    return (
+      <div className="newChat">
+        <div className="newChat--Head">
+          <div className="newChat--backbutton"></div>
+          <div className="newChat--list" >
+
+          </div>
+          <div className="newChat--headTitle">
+            <ArrowBackIcon onClick={() => setOpenConversas(false)} />
+            <div style={{ fontSize: '20px', marginLeft: '15px', fontFamily: 'Mooli' }}> Nova Conversa</div>
+          </div>
+        </div>
+
+      </div>
+    )
+  }
+
+
   return (
     <div className="app-window">
       <div className="sidebar">
-        <header>
-          <img className="header-avatar" src={user.avatares} alt="avatar" />
+        {openConversas === true ? <NewChat /> : (
+          <header>
+            <img className="header-avatar" src={user.avatares} alt="avatar" />
 
-          <div
-            style={{ display: 'flex', flexDirection: 'column', height: '1.5rem', width: '7.8rem' }}
-          >
-            <div className="header-buttons">
-              <div className="header-btn">
-                <DonutLargeIcon size="28" color="blue" />
-                <ChatIcon size="28" color="blue" />
-                <MoreVertIcon size="28" color="blue" />
+            <div
+              style={{ display: 'flex', flexDirection: 'column', height: '1.5rem', width: '7.8rem' }}
+            >
+              <div className="header-buttons">
+                <div className="header-btn">
+                  <DonutLargeIcon size="28" color="blue" />
+                  <ChatIcon size="28" color="blue" onClick={() => setOpenFalas()} />
+                  <MoreVertIcon size="28" color="blue" />
+                </div>
               </div>
             </div>
-          </div>
-        </header>
+          </header>
+        )}
+
+
 
         <div className="search-input">
           <input type="text" placeholder="Procurar ou começar uma nova conversa" />
