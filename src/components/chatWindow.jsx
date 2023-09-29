@@ -23,8 +23,6 @@ function Chatwindow({ user, data }) {
     { author: 1234, body: 'Eu de novo' },
     { author: 1234, body: 'Eu de novo' },
     { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
     { author: 1234, body: 'Eu de novo' }
   ])
 

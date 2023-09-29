@@ -4,6 +4,7 @@
   height: 7rem;
   background-color: green;
   color: white;
+  transition: 'all ease 2.5s'
 }
 
 .newChat--headTitle{

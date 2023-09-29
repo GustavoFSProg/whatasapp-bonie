@@ -19,7 +19,8 @@ import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker, { Emoji } from 'emoji-picker-react'
 import whats from '../src/assets/whats-2.png'
 import Chatwindow from './components/chatWindow'
-// import NewChat from './NewChat'
+import ChatList from './components/ChatList'
+import Login from './components/Login'
 
 function App() {
   const [clicked, setClicked] = useState(false)
@@ -30,18 +31,7 @@ function App() {
   const [emoji, setEmoji] = useState('')
   const [openConversas, setOpenConversas] = useState(false)
 
-
-
-
-  const [user, setUser] = useState({
-
-    id: 123,
-    avatares: avatar1,
-    name: 'Gustavo Sohne'
-
-  }
-
-  )
+  const [user, setUser] = useState(null)
 
   let recognition = null
   let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
@@ -94,7 +84,7 @@ function App() {
   }
 
 
-  function NewChat() {
+  function NewChat({ chatList, user }) {
     return (
       <div className="newChat">
         <div className="newChat--Head">
@@ -112,11 +102,27 @@ function App() {
     )
   }
 
+  async function handleLoginData(u) {
+    let newUser = {
+      id: u.uid,
+      name: u.displayName,
+      avatar: u.photoURL
+    }
+
+    setUser(newUser)
+
+    // return user
+  }
+
+  if (user === null) {
+    return <Login onReceive={handleLoginData} />
+  }
+
 
   return (
     <div className="app-window">
       <div className="sidebar">
-        {openConversas === true ? <NewChat /> : (
+        {openConversas === true ? <NewChat user={user} chatlist={chatlist} /> : (
           <header style={{ height: '7rem' }}>
             <img className="header-avatar" src={user.avatares} alt="avatar" />
 
@@ -158,28 +164,11 @@ function App() {
         </div>
 
         <div className="chatlist">
-          <img className="header-avatar" src={avatar} alt="avatar" />
-          <div onClick={handleWindow} className="chat-list-container">
-            <span
-              style={{
-                marginLeft: '-18px',
-                fontFamily: 'Arial',
-                fontSize: '17px'
-              }}
-            >
-              Barbara
-            </span>
+          <div onClick={handleWindow}>
+            <ChatList />
 
-            <span
-              style={{
-                marginTop: '3px',
-                marginLeft: '-2px',
-                fontFamily: 'Arial',
-                fontSize: '14px'
-              }}
-            >
-              Mensagem
-            </span>
+
+
           </div>
 
         </div>
