@@ -38,36 +38,39 @@ function Chatwindow({ user, data }) {
             color: 'black',
             height: '3rem',
             paddingBottom: '37px',
-            marginTop: '45px'
+            marginTop: '45px',
+            marginLeft: '-10px',
+
           }}
         >
           <img
             className="header-avatar"
-            src={avatar1}
+            src={user.photoURL}
             alt="avatar"
             style={{
               width: '3.8rem',
-              height: '5rem',
-              marginLeft: '13px',
-              marginTop: '8px'
+              height: '3.8rem',
+              marginLeft: '-73px',
+              // marginTop: '8px'
             }}
           />
-          <p
+          <span
             style={{
-              marginLeft: '12px',
-              marginTop: '27px',
-
+              marginLeft: '-42px',
+              // marginTop: '27px',
+              color: 'black',
               fontFamily: 'Arial',
-              fontSize: '17px'
+              fontSize: '14px',
+              width: '280px'
             }}
           >
-            {user.name}
-          </p>
+            {user.displayName}
+          </span>
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginLeft: '590px'
+              marginLeft: '380px'
             }}
           >
             <SearchIcon style={{ display: 'flex', marginRight: '20px', fontSize: '29px' }} />

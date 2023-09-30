@@ -1,10 +1,4 @@
-import './global.css'
-import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
-import { auth, databaseApp } from './firebaseConfig'
-import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
 import { useState } from 'react'
-import Login from './components/Login'
 import './App.css'
 import './NewChat.css'
 import avatar from './assets/avatar.png'
@@ -26,6 +20,8 @@ import EmojiPicker, { Emoji } from 'emoji-picker-react'
 import whats from '../src/assets/whats-2.png'
 import Chatwindow from './components/chatWindow'
 import ChatList from './components/ChatList'
+import { useSignInWithGoogle, useAuthState } from 'react-firebase-hooks/auth'
+import { auth, databaseApp } from './firebaseConfig'
 
 function App() {
   const [clicked, setClicked] = useState(false)
@@ -36,14 +32,20 @@ function App() {
   const [emoji, setEmoji] = useState('')
   const [openConversas, setOpenConversas] = useState(false)
 
-  // const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null)
 
-  const [user] = useAuthState(auth)
 
+  let recognition = null
+  let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
+
+  if (SpechRecgonition !== undefined) {
+    const recognition = new SpechRecgonition()
+  }
 
   function handleWindow() {
     setIntro(true)
   }
+
 
   function setOpenFalas() {
     setOpenConversas(true)
@@ -53,22 +55,34 @@ function App() {
     setChatList(true)
   }
 
+  const handleMicClick = () => {
+    if (recognition !== null) {
+      recognition.onstart = () => {
+        setListen(true)
+      }
 
-  function SignOut() {
-    return (
-      auth.currentUser && (
-        <button style={{
-          height: '28px', display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: '17px'
-        }
-        } className="botao-logout"
-          onClick={() => auth.signOut()}>
-          Log Out
-        </button >
-      )
-    )
+      recognition.onend = () => {
+        setListen(false)
+      }
+
+      recognition.onresult = (e) => {
+        setText(e.results[0][0].transcript)
+      }
+
+      recognition.start()
+
+      console.log(recognition)
+    }
+  }
+
+  function handleOpenEmoji() {
+    setClicked(true)
+
+    return
+  }
+
+  function handleClickEmoji(e) {
+    setText(e + emoji.emoji)
   }
 
 
@@ -91,24 +105,35 @@ function App() {
   }
 
 
+  // async function handleLoginData(u) {
+  //   let newUser = {
+  //     id: u.uid,
+  //     name: u.displayName,
+  //     avatar: u.photoURL
+  //   }
+
+  //   setUser(newUser)
+
+  //   return user
+  // }
+
+
+  // if (user === null) {
+  //   return <Login onReceive={handleLoginData} />
+  // }
+
   if (user === null) {
-    return <Login onReceive={user} />
+    return <SignIn onReceive={handleLoginData} />
   }
-  const { photoURL, uid, displayName } = auth.currentUser
+
+
   return (
-
-
     <div className="app-window">
       <div className="sidebar">
-        <div >
-          <SignOut />
-        </ div >
         {openConversas === true ? <NewChat user={user} chatlist={chatlist} /> : (
           <header style={{ height: '7rem' }}>
-            <img className="header-avatar" src={photoURL} alt="avatar" />
-            <span >
-              {displayName}
-            </span>
+            <img className="header-avatar" src={user.avatares} alt="avatar" />
+
             <div
               style={{ display: 'flex', flexDirection: 'column', height: '1.5rem', width: '7.8rem' }}
             >
@@ -164,7 +189,6 @@ function App() {
             <img src={whats} alt="novo" width="898" />
           </div>
         ) : (
-          // <Chatwindow photoURL={photoURL} displayName={displayName} />
           <Chatwindow user={user} />
         )}
         <div
