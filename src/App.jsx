@@ -81,7 +81,10 @@ function App() {
 
           </div>
           <div className="newChat--headTitle">
-            <ArrowBackIcon onClick={() => setOpenConversas(false)} />
+            <ArrowBackIcon
+              style={{ cursor: 'pointer' }}
+
+              onClick={() => setOpenConversas(false)} />
             <div style={{ fontSize: '20px', marginLeft: '15px', fontFamily: 'Mooli' }}> Nova Conversa</div>
           </div>
         </div>
@@ -115,7 +118,9 @@ function App() {
               <div className="header-buttons">
                 <div className="header-btn">
                   <DonutLargeIcon size="28" color="blue" />
-                  <ChatIcon size="28" color="blue" onClick={() => setOpenFalas()} />
+                  <ChatIcon size="28" color="blue"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setOpenFalas()} />
                   <MoreVertIcon size="28" color="blue" />
                 </div>
               </div>
@@ -147,7 +152,10 @@ function App() {
         </div>
 
         <div className="chatlist">
-          <div onClick={handleWindow}>
+          <div
+            style={{ cursor: 'pointer' }}
+
+            onClick={handleWindow}>
             <ChatList />
 
 
