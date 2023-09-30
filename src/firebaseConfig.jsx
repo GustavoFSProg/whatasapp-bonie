@@ -1,8 +1,17 @@
+import { initializeApp } from "firebase/app"
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
-// import { initializeApp } from "firebase/app"
-// import { getAnalytics } from "firebase/analytics"
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD7hL2hM2l6A5UvzxLMbZgJzvRxL7_QTwg",
+//   authDomain: "chat-firebase-7024c.firebaseapp.com",
+//   projectId: "chat-firebase-7024c",
+//   storageBucket: "chat-firebase-7024c.appspot.com",
+//   messagingSenderId: "478201840300",
+//   appId: "1:478201840300:web:aaf9c162f3e8da4390d509",
+//   measurementId: "G-VX3BY4JYQR"
+// }
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBAtY5i5M7DXGFwNL1jxk32cyFZg3lrmR4",
   authDomain: "whatsappbonie.firebaseapp.com",
@@ -13,14 +22,6 @@ const firebaseConfig = {
   measurementId: "G-Z4VQX50243"
 }
 
-export default firebaseConfig
-
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig)
-// const analytics = getAnalytics(app)
-
-// const db = getFirestore(app)
-
-// export const auth = getAuth(app)
-// export const databaseApp = getFirestore(app)
-
+export const app = initializeApp(firebaseConfig)
+export const auth = getAuth(app)
+export const databaseApp = getFirestore(app)
