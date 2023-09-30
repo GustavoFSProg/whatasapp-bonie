@@ -74,7 +74,7 @@ header {
 }
 
 .header-avatar {
-  width: 40px;
+  width: 45px;
   height: 45px;
   border-radius: 20px;
   cursor: pointer;
@@ -110,14 +110,13 @@ header {
 
 input {
   display: flex;
-  /* margin-top: 20px; */
   width: 22.4rem;
-  /* width: 700px; */
   border: none;
   height: 35px;
   border-radius: 6px;
   background: #cccccc;
   padding-left: 36px;
+  font-size: 16px;
 }
 .chatlist {
   height: 70px;

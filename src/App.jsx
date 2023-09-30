@@ -75,7 +75,6 @@ function App() {
 
   function NewChat({ chatList, user }) {
     return (
-
       <div className="newChat">
         <div className="newChat--Head">
           <div className="newChat--backbutton"></div>
@@ -96,6 +95,7 @@ function App() {
   if (user === null) {
     return <Login onReceive={user} />
   }
+  const { photoURL, uid, displayName } = auth.currentUser
 
   return (
 
@@ -107,8 +107,10 @@ function App() {
         </ div >
         {openConversas === true ? <NewChat user={user} chatlist={chatlist} /> : (
           <header style={{ height: '7rem' }}>
-            <img className="header-avatar" src={user.avatares} alt="avatar" />
-
+            <img className="header-avatar" src={photoURL} alt="avatar" />
+            <span >
+              {displayName}
+            </span>
             <div
               style={{ display: 'flex', flexDirection: 'column', height: '1.5rem', width: '7.8rem' }}
             >

@@ -172,9 +172,9 @@ img {
 
   .botao-logout {
     margin-right: 30px;
-    font-size: 12px;
+    
   }
-
+/* 
     input {
     width: 100%;
     font-size: 1rem;
@@ -182,7 +182,7 @@ img {
     color: white;
     outline: none;
     border: none;
-  }
+  } */
 
   form button {
     width: 40%;
