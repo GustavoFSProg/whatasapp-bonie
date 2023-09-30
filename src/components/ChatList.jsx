@@ -2,7 +2,11 @@ import imageAvatar from '../assets/avatar.png'
 
 function ChatList() {
   return (
-    <div style={{ display: 'flex', width: '100%', marginTop: '30px', flexDirection: 'column' }}>
+    <div
+      style={{
+        display: 'flex', width: '100%', marginTop: '10px',
+        flexDirection: 'column',
+      }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
