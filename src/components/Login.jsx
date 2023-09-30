@@ -11,7 +11,7 @@ function Login({ onReceive }) {
       console.log(result)
 
     } else {
-      console.log("erro")
+      alert("erro")
     }
 
   }
@@ -26,7 +26,7 @@ function Login({ onReceive }) {
           marginTop: '6px',
         }}
       >
-        <button onClick={handleLoginFacebook}>
+        <button style={{ height: '100px' }} onClick={handleLoginFacebook}>
           Logar com Facebook
         </button>
       </div>

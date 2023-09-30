@@ -111,7 +111,7 @@ function App() {
 
     setUser(newUser)
 
-    // return user
+    return user
   }
 
   if (user === null) {
