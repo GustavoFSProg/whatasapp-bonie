@@ -105,17 +105,17 @@ function App() {
   }
 
 
-  async function handleLoginData(u) {
-    let newUser = {
-      id: u.uid,
-      name: u.displayName,
-      avatar: u.photoURL
-    }
+  // async function handleLoginData(u) {
+  //   let newUser = {
+  //     id: u.uid,
+  //     name: u.displayName,
+  //     avatar: u.photoURL
+  //   }
 
-    setUser(newUser)
+  //   setUser(newUser)
 
-    return user
-  }
+  //   return user
+  // }
 
 
   // if (user === null) {

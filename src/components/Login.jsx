@@ -18,6 +18,7 @@ function Login({ onReceive }) {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        height: '100vh'
       }}
     >
       {' '}
@@ -25,12 +26,12 @@ function Login({ onReceive }) {
         style={{
           color: 'gray',
           background: 'white',
-          width: '50%',
+          width: '40%',
         }}
         onClick={() => SignInWithGoogle()}
       >
         {' '}
-        SignIn With Google
+        Entrar com o Google
       </button>
     </div>
   )
