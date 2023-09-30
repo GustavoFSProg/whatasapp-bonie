@@ -45,7 +45,6 @@ function App() {
     setIntro(true)
   }
 
-
   function setOpenFalas() {
     setOpenConversas(true)
   }
@@ -96,7 +95,6 @@ function App() {
     return <Login onReceive={user} />
   }
   const { photoURL, uid, displayName } = auth.currentUser
-
   return (
 
 
@@ -166,6 +164,7 @@ function App() {
             <img src={whats} alt="novo" width="898" />
           </div>
         ) : (
+          // <Chatwindow photoURL={photoURL} displayName={displayName} />
           <Chatwindow user={user} />
         )}
         <div
