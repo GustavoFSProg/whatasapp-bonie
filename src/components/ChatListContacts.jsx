@@ -32,7 +32,6 @@ function ChatListContacts() {
 
           <span> NOME DO CONTADO</span>
         </div>
-        <span>19:00</span>
 
 
       </div>
@@ -62,7 +61,6 @@ function ChatListContacts() {
 
           <span> NOME DO CONTADO</span>
         </div>
-        <span>19:00</span>
 
 
       </div>
@@ -93,7 +91,6 @@ function ChatListContacts() {
 
           <span> NOME DO CONTADO</span>
         </div>
-        <span>19:00</span>
 
 
       </div>

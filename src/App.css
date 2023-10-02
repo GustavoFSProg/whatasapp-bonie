@@ -62,8 +62,8 @@ body {
   max-width: 415px;
   flex-direction: column;
   border-right: 3px solid #ddd;
-  background-color: orange;
-  /* background-color: lightgray; */
+  /* background-color: orange; */
+  background-color: lightgray;
   height: 100vh;
 }
 
