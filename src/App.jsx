@@ -1,16 +1,14 @@
 import './global.css'
 import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+// import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { auth, databaseApp } from './firebaseConfig'
 import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Login from './components/Login'
 import './App.css'
 import './NewChat.css'
 import avatar from './assets/avatar.png'
 import avatar1 from './assets/avatar-1.jpeg'
-// import { BsFillChatLeftTextFill } from 'react-icons/bs'
-// import { MdOutlineDonutLarge } from 'react-icons/md'
 
 import DonutLargeIcon from '@mui/icons-material/DonutLarge'
 import ChatIcon from '@mui/icons-material/Chat'
@@ -36,6 +34,10 @@ function App() {
   const [emoji, setEmoji] = useState('')
   const [openConversas, setOpenConversas] = useState(false)
 
+  const messageRef = collection(databaseApp, 'users')
+
+
+
   // const [user, setUser] = useState(null)
 
   const [user] = useAuthState(auth)
@@ -43,6 +45,16 @@ function App() {
 
   function handleWindow() {
     setIntro(true)
+  }
+
+  async function AddDocs(u) {
+
+    await addDoc(messageRef, {
+      name: u.displayName,
+      avatar: u.photoURL,
+    }, { marge: true })
+
+    return console.log(u)
   }
 
   function setOpenFalas() {
@@ -72,6 +84,13 @@ function App() {
   }
 
 
+  // async function addUser(u) {
+  //   await db.collection('users').doc(u.id).set({
+  //     name: u.name,
+  //     avatar: u.avatar,
+  //   }, { marge: true })
+  // }
+
   function NewChat({ chatList, user }) {
     return (
       <div className="newChat">
@@ -96,8 +115,27 @@ function App() {
 
   if (user === null) {
     return <Login onReceive={user} />
+
   }
+
+
   const { photoURL, uid, displayName } = auth.currentUser
+
+  const u = { photoURL, displayName }
+
+  AddDocs(u)
+
+  // useEffect(() => {
+
+  //   const { photoURL, uid, displayName } = auth.currentUser
+
+  //   const u = { photoURL, displayName }
+
+  //   AddDocs(u)
+  // }, [])
+
+
+
   return (
 
 
