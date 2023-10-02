@@ -205,7 +205,10 @@ function App() {
               </div> */}
 
             </div>
-            <ChatListItem />
+            <div style={{ cursor: 'pointer' }} onClick={handleWindow}>
+              <ChatListItem />
+
+            </div>
 
           </>
         )
