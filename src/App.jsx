@@ -260,6 +260,14 @@ function App() {
                     paddingLeft: '15px'
                   }}
                 />
+                <TextRotationDownIcon
+                  fontSize='large'
+                  style={{
+                    cursor: 'pointer', marginLeft: '15px',
+                    color: 'gray'
+                  }}
+
+                  onClick={() => setOpenConversas(false)} />
 
                 <div onClick={() => handleMicClick()}>
                   <MicIcon
