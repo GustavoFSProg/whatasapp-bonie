@@ -62,7 +62,9 @@ body {
   max-width: 415px;
   flex-direction: column;
   border-right: 3px solid #ddd;
-  background-color: lightgray;
+  background-color: orange;
+  /* background-color: lightgray; */
+  height: 100vh;
 }
 
 header {
@@ -142,10 +144,6 @@ input {
   justify-content: left;
   cursor: pointer;
 }
-
-
-
-
 
 .main-container {
   /* background: url('./novo.jpg') no-repeat; */

@@ -1,6 +1,6 @@
 import imageAvatar from '../assets/avatar.png'
 
-function ChatList() {
+function ChatListContacts() {
   return (
     <div
       style={{
@@ -31,7 +31,6 @@ function ChatList() {
         }}>
 
           <span> NOME DO CONTADO</span>
-          <span style={{ fontSize: '13px', marginTop: '7px' }}>MENSAGEM DA MENSAGEM</span>
         </div>
         <span>19:00</span>
 
@@ -62,7 +61,6 @@ function ChatList() {
         }}>
 
           <span> NOME DO CONTADO</span>
-          <span style={{ fontSize: '13px', marginTop: '7px' }}>MENSAGEM DA MENSAGEM</span>
         </div>
         <span>19:00</span>
 
@@ -94,7 +92,6 @@ function ChatList() {
         }}>
 
           <span> NOME DO CONTADO</span>
-          <span style={{ fontSize: '13px', marginTop: '7px' }}>MENSAGEM DA MENSAGEM</span>
         </div>
         <span>19:00</span>
 
@@ -108,4 +105,4 @@ function ChatList() {
   )
 }
 
-export default ChatList
+export default ChatListContacts

@@ -12,22 +12,6 @@ function Login({ onReceive }) {
   const [SignInWithGoogle] = useSignInWithGoogle(auth)
 
 
-  // async function AddDocs(u) {
-
-  //   await addDoc(messageRef, {
-  //     name: u.displayName,
-  //     avatar: u.photoURL,
-  //     // createdAt: Date(),
-  //   }, { marge: true })
-  // }
-
-  // const { photoURL, uid, displayName } = auth.currentUser
-
-  // const u = { photoURL, displayName }
-
-  // AddDocs(u)
-
-
   return (
     <div
       style={{
@@ -38,7 +22,6 @@ function Login({ onReceive }) {
         height: '100vh'
       }}
     >
-      {' '}
       <button
         style={{
           color: 'gray',

@@ -1,3 +1,12 @@
+.newChatContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: yellow;
+  color: black;
+}
+
 .newChat{
   display: flex;
   width: 100%;

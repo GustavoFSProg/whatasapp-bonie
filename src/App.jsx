@@ -23,12 +23,13 @@ import ClearIcon from '@mui/icons-material/Clear'
 import EmojiPicker, { Emoji } from 'emoji-picker-react'
 import whats from '../src/assets/whats-2.png'
 import Chatwindow from './components/chatWindow'
-import ChatList from './components/ChatList'
+import ChatListItem from './components/ChatListItem'
+import ChatListContacts from './components/ChatListContacts'
 
 function App() {
   const [clicked, setClicked] = useState(false)
   const [listen, setListen] = useState(false)
-  const [chatlist, setChatList] = useState(false)
+  const [chatlist, setChatList] = useState([])
   const [intro, setIntro] = useState(false)
   const [text, setText] = useState('')
   const [emoji, setEmoji] = useState('')
@@ -36,23 +37,23 @@ function App() {
 
   const messageRef = collection(databaseApp, 'users')
 
-
-
   // const [user, setUser] = useState(null)
 
   const [user] = useAuthState(auth)
-
 
   function handleWindow() {
     setIntro(true)
   }
 
   async function AddDocs(u) {
-
-    await addDoc(messageRef, {
-      name: u.displayName,
-      avatar: u.photoURL,
-    }, { marge: true })
+    await addDoc(
+      messageRef,
+      {
+        name: u.displayName,
+        avatar: u.photoURL
+      },
+      { marge: true }
+    )
 
     return console.log(u)
   }
@@ -65,24 +66,25 @@ function App() {
     setChatList(true)
   }
 
-
   function SignOut() {
     return (
       auth.currentUser && (
-        <button style={{
-          height: '28px', display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: '17px'
-        }
-        } className="botao-logout"
-          onClick={() => auth.signOut()}>
+        <button
+          style={{
+            height: '28px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '17px'
+          }}
+          className="botao-logout"
+          onClick={() => auth.signOut()}
+        >
           Log Out
-        </button >
+        </button>
       )
     )
   }
-
 
   // async function addUser(u) {
   //   await db.collection('users').doc(u.id).set({
@@ -93,31 +95,41 @@ function App() {
 
   function NewChat({ chatList, user }) {
     return (
-      <div className="newChat">
-        <div className="newChat--Head">
-          <div className="newChat--backbutton"></div>
-          <div className="newChat--list" >
+      <>
 
+        <div className="newChatContainer">
+          <div className="newChat">
+            <div className="newChat--Head">
+              <div className="newChat--backbutton"></div>
+              <div className="newChat--list">
+
+
+              </div>
+              <div className="newChat--headTitle">
+                <ArrowBackIcon
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => setOpenConversas(false)}
+                />
+                <div style={{ fontSize: '20px', marginLeft: '15px', fontFamily: 'Mooli' }}>
+                  {' '}
+                  Nova Conversa
+                </div>
+              </div>
+            </div>
+            <div>
+            </div>
           </div>
-          <div className="newChat--headTitle">
-            <ArrowBackIcon
-              style={{ cursor: 'pointer' }}
-
-              onClick={() => setOpenConversas(false)} />
-            <div style={{ fontSize: '20px', marginLeft: '15px', fontFamily: 'Mooli' }}> Nova Conversa</div>
+          <div style={{ cursor: 'pointer' }} onClick={handleWindow}>
+            <ChatListContacts />
           </div>
         </div>
-
-      </div>
+      </>
     )
   }
 
-
   if (user === null) {
     return <Login onReceive={user} />
-
   }
-
 
   const { photoURL, uid, displayName } = auth.currentUser
 
@@ -134,41 +146,72 @@ function App() {
   //   AddDocs(u)
   // }, [])
 
-
-
   return (
-
-
     <div className="app-window">
       <div className="sidebar">
-        <div >
+        <div>
           <SignOut />
-        </ div >
-        {openConversas === true ? <NewChat user={user} chatlist={chatlist} /> : (
-          <header style={{ height: '7rem' }}>
-            <img className="header-avatar" src={photoURL} alt="avatar" />
-            <span >
-              {displayName}
-            </span>
-            <div
-              style={{ display: 'flex', flexDirection: 'column', height: '1.5rem', width: '7.8rem' }}
-            >
-              <div className="header-buttons">
-                <div className="header-btn">
-                  <DonutLargeIcon size="28" color="blue" />
-                  <ChatIcon size="28" color="blue"
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => setOpenFalas()} />
-                  <MoreVertIcon size="28" color="blue" />
+        </div>
+        {openConversas === true ? (
+          <NewChat user={user} chatlist={chatlist} />
+        ) : (
+          <>
+            <header style={{ height: '7rem' }}>
+              <img className="header-avatar" src={photoURL} alt="avatar" />
+              <span>{displayName}</span>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '1.5rem',
+                  width: '7.8rem'
+                }}
+              >
+                <div className="header-buttons">
+                  <div className="header-btn">
+                    <DonutLargeIcon size="28" color="blue" />
+                    <ChatIcon
+                      size="28"
+                      color="blue"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => setOpenFalas()}
+                    />
+                    <MoreVertIcon size="28" color="blue" />
+                  </div>
                 </div>
               </div>
+            </header>
+            <div className="search-input">
+              <input type="text" placeholder="Procurar ou começar uma nova conversa" />
+              <button
+                style={{
+                  marginTop: '5px',
+                  marginLeft: '-352px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                onClick={() => alert('Clicado!!')}
+              >
+                <SearchIcon
+                  style={{
+                    // marginTop: '5px', marginLeft: '-352px',
+                    fontSize: '23px'
+                  }}
+                />
+              </button>
+              {/* <div className="chatlist">
+
+              </div> */}
+
             </div>
-          </header>
-        )}
+            <ChatListItem />
 
+          </>
+        )
+        }
 
-
-        <div className="search-input">
+        {/* <div className="search-input">
           <input type="text" placeholder="Procurar ou começar uma nova conversa" />
           <button
             style={{
@@ -187,24 +230,24 @@ function App() {
               }}
             />
           </button>
-        </div>
+        </div> */}
 
-        <div className="chatlist">
-          <div
+        {/* <div className="chatlist">asas */}
+        {/* <div
             style={{ cursor: 'pointer' }}
 
             onClick={handleWindow}>
-            <ChatList />
+            {chatlist}
 
+asas
 
+          </div> */}
+        {/* </div> */}
+        {/* <ChatListItem /> */}
 
-          </div>
-
-        </div>
       </div>
 
       <div className="contentarea">
-
         {intro === false ? (
           <div className="main-container">
             <img src={whats} alt="novo" width="898" />
@@ -299,13 +342,14 @@ function App() {
                   }}
                 />
                 <TextRotationDownIcon
-                  fontSize='large'
+                  fontSize="large"
                   style={{
-                    cursor: 'pointer', marginLeft: '15px',
+                    cursor: 'pointer',
+                    marginLeft: '15px',
                     color: 'gray'
                   }}
-
-                  onClick={() => setOpenConversas(false)} />
+                  onClick={() => setOpenConversas(false)}
+                />
 
                 <div onClick={() => handleMicClick()}>
                   <MicIcon
