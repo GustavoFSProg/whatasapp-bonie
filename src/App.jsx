@@ -1,14 +1,15 @@
 import './global.css'
 import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth'
-// import { useCollectionData } from 'react-firebase-hooks/firestore'
-import { auth, databaseApp } from './firebaseConfig'
-import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
+import { app, auth, databaseApp } from './firebaseConfig'
+import { collection, query, orderBy, addDoc, getDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import Login from './components/Login'
 import './App.css'
 import './NewChat.css'
-import avatar from './assets/avatar.png'
-import avatar1 from './assets/avatar-1.jpeg'
+import { getDatabase, ref, push, get } from "firebase/database"
+// import { } from 'firebase/firestore'
+// import avatar from './assets/avatar.png'
+// import avatar1 from './assets/avatar-1.jpeg'
 
 import DonutLargeIcon from '@mui/icons-material/DonutLarge'
 import ChatIcon from '@mui/icons-material/Chat'
@@ -25,6 +26,10 @@ import whats from '../src/assets/whats-2.png'
 import Chatwindow from './components/chatWindow'
 import ChatListItem from './components/ChatListItem'
 import ChatListContacts from './components/ChatListContacts'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { DoorBack } from '@mui/icons-material'
+import { getAuth } from 'firebase/auth'
+import ShowContacts, { ChatRoom } from './components/showContacts'
 
 function App() {
   const [clicked, setClicked] = useState(false)
@@ -35,9 +40,15 @@ function App() {
   const [emoji, setEmoji] = useState('')
   const [openConversas, setOpenConversas] = useState(false)
 
-  const messageRef = collection(databaseApp, 'users')
+  // const messageRef = collection(databaseApp, 'users')
+  // const QueryMessages = query(messageRef, orderBy('id'))
+  // const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
 
-  // const [user, setUser] = useState(null)
+
+  const messageRef = collection(databaseApp, 'users')
+  // eslint-disable-next-line no-undef
+  const QueryMessages = query(messageRef, orderBy('id', "asc"))
+  const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
 
   const [user] = useAuthState(auth)
 
@@ -55,8 +66,9 @@ function App() {
       { marge: true }
     )
 
-    return console.log(u)
+    // return console.log(u)
   }
+
 
   function setOpenFalas() {
     setOpenConversas(true)
@@ -137,21 +149,15 @@ function App() {
 
   AddDocs(u)
 
-  // useEffect(() => {
-
-  //   const { photoURL, uid, displayName } = auth.currentUser
-
-  //   const u = { photoURL, displayName }
-
-  //   AddDocs(u)
-  // }, [])
-
   return (
     <div className="app-window">
       <div className="sidebar">
         <div>
           <SignOut />
+
+
         </div>
+
         {openConversas === true ? (
           <NewChat user={user} chatlist={chatlist} />
         ) : (
@@ -195,7 +201,6 @@ function App() {
               >
                 <SearchIcon
                   style={{
-                    // marginTop: '5px', marginLeft: '-352px',
                     fontSize: '23px'
                   }}
                 />
@@ -214,43 +219,12 @@ function App() {
         )
         }
 
-        {/* <div className="search-input">
-          <input type="text" placeholder="Procurar ou começar uma nova conversa" />
-          <button
-            style={{
-              marginTop: '5px',
-              marginLeft: '-352px',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-            onClick={() => alert('Clicado!!')}
-          >
-            <SearchIcon
-              style={{
-                // marginTop: '5px', marginLeft: '-352px',
-                fontSize: '23px'
-              }}
-            />
-          </button>
-        </div> */}
 
-        {/* <div className="chatlist">asas */}
-        {/* <div
-            style={{ cursor: 'pointer' }}
-
-            onClick={handleWindow}>
-            {chatlist}
-
-asas
-
-          </div> */}
-        {/* </div> */}
-        {/* <ChatListItem /> */}
 
       </div>
 
       <div className="contentarea">
+
         {intro === false ? (
           <div className="main-container">
             <img src={whats} alt="novo" width="898" />
@@ -258,7 +232,12 @@ asas
         ) : (
           // <Chatwindow photoURL={photoURL} displayName={displayName} />
           <Chatwindow user={user} />
+
         )}
+
+        {/* // ********** */}
+        {/* <ChatRoom /> */}
+
         <div
           style={{
             width: '100%',
@@ -271,12 +250,17 @@ asas
             // background: 'green'
           }}
         >
+
+
+
+
           <div
             style={{
               display: 'flex',
               alignItems: 'center'
             }}
           >
+
             {clicked === true ? (
               <div
                 style={{
