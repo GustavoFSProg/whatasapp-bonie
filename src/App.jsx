@@ -45,7 +45,7 @@ function App() {
   // const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
 
 
-  const messageRef = collection(databaseApp, 'users')
+  const messageRef = collection(databaseApp, 'usuarios')
   // eslint-disable-next-line no-undef
   const QueryMessages = query(messageRef, orderBy('id', "asc"))
   const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
@@ -66,7 +66,6 @@ function App() {
       { marge: true }
     )
 
-    // return console.log(u)
   }
 
 
@@ -211,7 +210,9 @@ function App() {
 
             </div>
             <div style={{ cursor: 'pointer' }} onClick={handleWindow}>
-              <ChatListItem />
+              {/* <ChatListItem /> */}
+              <ChatRoom />
+
 
             </div>
 

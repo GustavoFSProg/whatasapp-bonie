@@ -1,4 +1,5 @@
 import imageAvatar from '../assets/avatar.png'
+import { ChatRoom } from './showContacts'
 
 function ChatListItem() {
   return (
@@ -7,7 +8,9 @@ function ChatListItem() {
         display: 'flex', width: '100%', marginTop: '10px',
         flexDirection: 'column',
       }}>
-      <div style={{
+      <ChatRoom />
+
+      {/* <div style={{
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%', flexDirection: 'row',
@@ -103,7 +106,7 @@ function ChatListItem() {
 
 
       <div className="newChat--list">
-      </div>
+      </div> */}
     </div>
   )
 }

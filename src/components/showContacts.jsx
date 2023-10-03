@@ -19,9 +19,9 @@ function ShowContacts() {
 
 export const ChatRoom = () => {
   const [formValue, setFormValue] = useState('')
-  const messageRef = collection(databaseApp, 'users')
+  const messageRef = collection(databaseApp, 'usuarios')
   // eslint-disable-next-line no-undef
-  const QueryMessages = query(messageRef, limit(10))
+  const QueryMessages = query(messageRef, limit(20))
   const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
 
   console.log(my_messages)
