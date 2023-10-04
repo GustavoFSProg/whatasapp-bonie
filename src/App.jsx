@@ -40,17 +40,14 @@ function App() {
   const [emoji, setEmoji] = useState('')
   const [openConversas, setOpenConversas] = useState(false)
 
-  // const messageRef = collection(databaseApp, 'users')
-  // const QueryMessages = query(messageRef, orderBy('id'))
-  // const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
-
 
   const messageRef = collection(databaseApp, 'usuarios')
-  // eslint-disable-next-line no-undef
   const QueryMessages = query(messageRef, orderBy('id', "asc"))
   const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
 
   const [user] = useAuthState(auth)
+
+  // console.log(`auth: ${{ auth }}`)
 
   function handleWindow() {
     setIntro(true)
@@ -138,6 +135,26 @@ function App() {
     )
   }
 
+
+
+
+  async function AddDocs(u) {
+    await addDoc(
+      messageRef,
+      {
+        name: u.displayName,
+        avatar: u.photoURL
+      },
+      { merge: true }
+    )
+
+  }
+
+
+
+
+
+
   if (user === null) {
     return <Login onReceive={user} />
   }
@@ -146,7 +163,11 @@ function App() {
 
   const u = { photoURL, displayName }
 
-  AddDocs(u)
+  // AddDocs(u)
+
+
+
+
 
   return (
     <div className="app-window">
