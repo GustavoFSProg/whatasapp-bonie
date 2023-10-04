@@ -163,7 +163,11 @@ function App() {
 
   const u = { photoURL, displayName }
 
-  // AddDocs(u)
+  if (displayName === 'Gustavo') {
+
+    AddDocs(u)
+  }
+
 
 
 
