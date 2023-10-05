@@ -2,7 +2,8 @@ import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { auth, databaseApp } from '../firebaseConfig'
 import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import api from '../api'
 
 function ShowContacts() {
   const [user] = useAuthState(auth)
@@ -17,77 +18,37 @@ function ShowContacts() {
 }
 
 export const ChatRoom = () => {
-  const [formValue, setFormValue] = useState('')
-  const messageRef = collection(databaseApp, 'usuarios')
-  // eslint-disable-next-line no-undef
-  const QueryMessages = query(messageRef, limit(20))
-  const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
+  const [contacts, setContacts] = useState([])
 
-  console.log(my_messages)
+  async function getContacts(e) {
+    const { data } = await api.get('/get-all-users')
 
-  async function sendMessage(e) {
-    e.preventDefault()
+    setContacts(data)
   }
-  const { photoURL, uid, displayName } = auth.currentUser
 
-  // const u = { photoURL, uid, displayName }
+  useEffect(() => {
+    getContacts()
+  }, [])
 
-  // async function AddDocs() {
-  //   // if (u.uid === uid) {
-  //   //   return alert('Ja foiii Cadastro!!')
-  //   // }
-  //   const { photoURL, uid, displayName } = auth.currentUser
-
-  //   await addDoc(
-  //     messageRef,
-  //     {
-  //       uid: uid,
-  //       name: displayName,
-  //       // name: "Cabaça",
-  //       avatar: photoURL
-  //       // avatar: "Foto da cabaça"
-  //     },
-  //     { merge: true }
-  //   )
-  // }
   return (
     <>
-      {/* <main> */}
-      <div style={{ marginTop: '3px', marginLeft: '5px' }}>
-        {my_messages &&
-          my_messages.map((msg) => {
-            console.log(`Porra: ${msg.name}`)
+      <main>
+        <div style={{ marginTop: '3px', marginLeft: '5px' }}>
+          {contacts.map((item) => {
+            console.log(`Porra: ${item.name}`)
 
-            // if (msg.uid === uid) {
-            //   alert('Ja Tem CADASTRO!!')
-            // } else {
-            //   AddDocs()
-            // }
             return (
               <>
-                <div key={msg.id}>
-                  <img src={msg.avatar} alt="iamgem" />
+                <div key={item.id}>
+                  <img src={item.avatar} alt="iamgem" />
 
-                  <span>{msg.name}</span>
+                  <span>{item.name}</span>
                 </div>
               </>
             )
           })}
-      </div>
-      {/* </main > */}
-
-      {/* {console.log(default_messages)} */}
-      {/* < br />
-      < form onSubmit={sendMessage} >
-        <input placeholder="Digite sua mensagem"
-          type="text" value={formValue}
-          onChange={(e) => setFormValue(e.target.value)}
-          style={{
-            paddingLeft: '19px',
-
-          }} />
-        <button className="enviar-button" type="submit">Enviar</button>
-      </form>
+        </div>
+      </main>
     </>
   )
 }
@@ -98,24 +59,24 @@ export const ChatMessage = (props) => {
   // eslint-disable-next-line react/prop-types
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received'
 
-
   return (
-    <div >
+    <div>
+      <img src={photoURL} alt="photo" height="15" width="30" style={{ marginTop: '20px' }} />
 
-      <img src={photoURL} alt="photo" height="15" width="30"
-        style={{ marginTop: '20px' }} />
-
-      <p style={{
-        fontSize: '17px', width: '25rem',
-        marginLeft: '10px', color: 'darkblue', fontFamily: 'Poppins'
-      }}>
+      <p
+        style={{
+          fontSize: '17px',
+          width: '25rem',
+          marginLeft: '10px',
+          color: 'darkblue',
+          fontFamily: 'Poppins'
+        }}
+      >
         {displayName}
         <br />
       </p>
     </div>
   )
-} */}
-    </>
-  )
 }
+
 export default ShowContacts
