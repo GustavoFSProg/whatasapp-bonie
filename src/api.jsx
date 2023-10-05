@@ -1,17 +1,7 @@
-// import firebase from 'firebase/app'
-// import 'firebase/auth'
-// import 'firebase/firestore'
+import axios from 'axios'
 
-// import firebaseConfig from './firebaseConfig'
+const api = axios.create({
+  baseURL: 'http://localhost:5000/'
+})
 
-// const firebaseApp = firebase.initializeApp(firebaseConfig)
-// const db = firebaseApp.firestore()
-
-// export default {
-//   fbPopup: async () => {
-//     const provider = new firebase.auth.FacebookAuthProvider()
-//     let result = await firebaseApp.auth().signInWithPopup(provider)
-
-//     return result
-//   }
-// } 
+export default api

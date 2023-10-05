@@ -30,6 +30,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { DoorBack } from '@mui/icons-material'
 import { getAuth } from 'firebase/auth'
 import ShowContacts, { ChatRoom } from './components/showContacts'
+import api from './api'
 
 function App() {
   const [clicked, setClicked] = useState(false)
@@ -117,46 +118,80 @@ function App() {
     )
   }
 
-  async function AddDocs(u) {
-    await addDoc(
-      messageRef,
-      {
-        uid: u.uid,
-        name: u.displayName,
-        // name: "Cabaça",
-        avatar: u.photoURL
-        // avatar: "Foto da cabaça"
-      },
-      { merge: true }
-    )
-  }
+  // async function AddDocs(u) {
+  //   await addDoc(
+  //     messageRef,
+  //     {
+  //       uid: u.uid,
+  //       name: u.displayName,
+  //       // name: "Cabaça",
+  //       avatar: u.photoURL
+  //       // avatar: "Foto da cabaça"
+  //     },
+  //     { merge: true }
+  //   )
+  // }
 
   if (!auth.currentUser) {
     return <Login onReceive={user} />
   }
 
+  async function getOneUser() {
+    const { data } = await api.get(`/get-one-user/${uid}`)
+
+    if (!data) {
+      const user = { photoURL, displayName, uid }
+
+      const data = await api.post('/register-users', user)
+      alert('Usuário Cadastrado com sucesso!!')
+
+      return console.log(data)
+    }
+    if (data.idGoogle === uid) {
+      alert('Usuario ja existe!!')
+    }
+    console.log(`NOMBRE: ${data.idGoogle}`)
+  }
+
   const { photoURL, displayName, uid } = auth.currentUser
 
-  const u = { photoURL, displayName, uid }
-  console.log(`u ${u.displayName}`)
-
-  function AddOnClick() {
-    AddDocs(u)
-    setDesabilit(true)
-
-    return alert('SHOW!!!!')
+  async function RegisterUser() {
+    // const user = { photoURL, displayName, uid }
+    // const data = await api.post('/register-users', user)
+    // return console.log(data)
   }
+
+  // function AddOnClick() {
+  //   AddDocs(u)
+  //   setDesabilit(true)
+
+  //   return alert('SHOW!!!!')
+  // }
+
+  // useEffect(() => {
+  //   getOneUser()
+  // }, [])
 
   return (
     <div className="app-window">
       <div className="sidebar">
-        <div>
-          <SignOut />
-
-          <button disabled={desabilit} onClick={AddOnClick}>
-            CADASTRAR
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div>
+            <SignOut />
+          </div>
+          <button
+            style={{
+              height: '30px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '150px',
+              fontSize: '14px',
+              display: 'flex'
+            }}
+            onClick={getOneUser}
+          >
+            CADASTRO
           </button>
-          {/* <button onClick={() => getUsers()}>LER USUARIOS</button> */}
         </div>
 
         {openConversas === true ? (
