@@ -168,17 +168,30 @@ function App() {
   //   return alert('SHOW!!!!')
   // }
 
+  // useEffect(() => {
+  //   getOneUser()
+  // }, [])
+
   return (
     <div className="app-window">
       <div className="sidebar">
-        <div>
-          <SignOut />
-
-          {/* <button disabled={desabilit} onClick={getUsers}>
-            CADASTRAR
-          </button> */}
-          <button onClick={getOneUser}>CADASTRAR USER</button>
-          {/* <button onClick={() => getUsers()}>LER USUARIOS</button> */}
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div>
+            <SignOut />
+          </div>
+          <button
+            style={{
+              height: '30px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '150px',
+              fontSize: '14px',
+              display: 'flex'
+            }}
+            onClick={getOneUser}
+          >
+            CADASTRO
+          </button>
         </div>
 
         {openConversas === true ? (
