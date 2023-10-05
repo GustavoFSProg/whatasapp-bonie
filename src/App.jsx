@@ -30,6 +30,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { DoorBack } from '@mui/icons-material'
 import { getAuth } from 'firebase/auth'
 import ShowContacts, { ChatRoom } from './components/showContacts'
+import api from './api'
 
 function App() {
   const [clicked, setClicked] = useState(false)
@@ -137,15 +138,20 @@ function App() {
 
   const { photoURL, displayName, uid } = auth.currentUser
 
-  const u = { photoURL, displayName, uid }
-  console.log(`u ${u.displayName}`)
+  async function RegisterUser() {
+    const user = { photoURL, displayName, uid }
 
-  function AddOnClick() {
-    AddDocs(u)
-    setDesabilit(true)
+    const data = await api.post('/register-users', user)
 
-    return alert('SHOW!!!!')
+    return console.log(data)
   }
+
+  // function AddOnClick() {
+  //   AddDocs(u)
+  //   setDesabilit(true)
+
+  //   return alert('SHOW!!!!')
+  // }
 
   return (
     <div className="app-window">
@@ -153,7 +159,7 @@ function App() {
         <div>
           <SignOut />
 
-          <button disabled={desabilit} onClick={AddOnClick}>
+          <button disabled={desabilit} onClick={RegisterUser}>
             CADASTRAR
           </button>
           {/* <button onClick={() => getUsers()}>LER USUARIOS</button> */}
