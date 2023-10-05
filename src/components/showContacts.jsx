@@ -4,6 +4,7 @@ import { auth, databaseApp } from '../firebaseConfig'
 import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import api from '../api'
+import '../App.css'
 
 function ShowContacts() {
   const [user] = useAuthState(auth)
@@ -32,19 +33,25 @@ export const ChatRoom = () => {
 
   return (
     <>
-      <main>
+      <main style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
         <div style={{ marginTop: '3px', marginLeft: '5px' }}>
           {contacts.map((item) => {
-            console.log(`Porra: ${item.name}`)
-
             return (
-              <>
-                <div key={item.id}>
+              <div style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '100%',
+                    marginTop: '25px',
+                    alignItems: 'center'
+                  }}
+                  key={item.id}
+                >
                   <img src={item.avatar} alt="iamgem" />
 
                   <span>{item.name}</span>
                 </div>
-              </>
+              </div>
             )
           })}
         </div>
