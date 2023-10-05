@@ -118,32 +118,47 @@ function App() {
     )
   }
 
-  async function AddDocs(u) {
-    await addDoc(
-      messageRef,
-      {
-        uid: u.uid,
-        name: u.displayName,
-        // name: "Cabaça",
-        avatar: u.photoURL
-        // avatar: "Foto da cabaça"
-      },
-      { merge: true }
-    )
-  }
+  // async function AddDocs(u) {
+  //   await addDoc(
+  //     messageRef,
+  //     {
+  //       uid: u.uid,
+  //       name: u.displayName,
+  //       // name: "Cabaça",
+  //       avatar: u.photoURL
+  //       // avatar: "Foto da cabaça"
+  //     },
+  //     { merge: true }
+  //   )
+  // }
 
   if (!auth.currentUser) {
     return <Login onReceive={user} />
   }
 
+  async function getOneUser() {
+    const { data } = await api.get(`/get-one-user/${uid}`)
+
+    if (!data) {
+      const user = { photoURL, displayName, uid }
+
+      const data = await api.post('/register-users', user)
+      alert('Usuário Cadastrado com sucesso!!')
+
+      return console.log(data)
+    }
+    if (data.idGoogle === uid) {
+      alert('Usuario ja existe!!')
+    }
+    console.log(`NOMBRE: ${data.idGoogle}`)
+  }
+
   const { photoURL, displayName, uid } = auth.currentUser
 
   async function RegisterUser() {
-    const user = { photoURL, displayName, uid }
-
-    const data = await api.post('/register-users', user)
-
-    return console.log(data)
+    // const user = { photoURL, displayName, uid }
+    // const data = await api.post('/register-users', user)
+    // return console.log(data)
   }
 
   // function AddOnClick() {
@@ -159,9 +174,10 @@ function App() {
         <div>
           <SignOut />
 
-          <button disabled={desabilit} onClick={RegisterUser}>
+          {/* <button disabled={desabilit} onClick={getUsers}>
             CADASTRAR
-          </button>
+          </button> */}
+          <button onClick={getOneUser}>CADASTRAR USER</button>
           {/* <button onClick={() => getUsers()}>LER USUARIOS</button> */}
         </div>
 
