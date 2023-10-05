@@ -4,12 +4,11 @@ import { auth, databaseApp } from '../firebaseConfig'
 import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
 import { useState } from 'react'
 
-
 function ShowContacts() {
   const [user] = useAuthState(auth)
 
   return (
-    <div >
+    <div>
       <header>
         <ChatRoom />
       </header>
@@ -28,34 +27,54 @@ export const ChatRoom = () => {
 
   async function sendMessage(e) {
     e.preventDefault()
-
-    const { photoURL, uid } = auth.currentUser
-
   }
+  const { photoURL, uid, displayName } = auth.currentUser
+
+  // const u = { photoURL, uid, displayName }
+
+  // async function AddDocs() {
+  //   // if (u.uid === uid) {
+  //   //   return alert('Ja foiii Cadastro!!')
+  //   // }
+  //   const { photoURL, uid, displayName } = auth.currentUser
+
+  //   await addDoc(
+  //     messageRef,
+  //     {
+  //       uid: uid,
+  //       name: displayName,
+  //       // name: "Cabaça",
+  //       avatar: photoURL
+  //       // avatar: "Foto da cabaça"
+  //     },
+  //     { merge: true }
+  //   )
+  // }
   return (
     <>
       {/* <main> */}
       <div style={{ marginTop: '3px', marginLeft: '5px' }}>
         {my_messages &&
-          my_messages.map(msg => {
+          my_messages.map((msg) => {
+            console.log(`Porra: ${msg.name}`)
+
+            // if (msg.uid === uid) {
+            //   alert('Ja Tem CADASTRO!!')
+            // } else {
+            //   AddDocs()
+            // }
             return (
               <>
-
                 <div key={msg.id}>
                   <img src={msg.avatar} alt="iamgem" />
 
-                  <span>
-                    {msg.name}
-                  </span>
-                </ div>
-
+                  <span>{msg.name}</span>
+                </div>
               </>
-
             )
           })}
-      </div >
+      </div>
       {/* </main > */}
-
 
       {/* {console.log(default_messages)} */}
       {/* < br />
@@ -97,7 +116,6 @@ export const ChatMessage = (props) => {
   )
 } */}
     </>
-
   )
 }
 export default ShowContacts

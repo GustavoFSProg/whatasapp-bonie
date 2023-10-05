@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import Login from './components/Login'
 import './App.css'
 import './NewChat.css'
-import { getDatabase, ref, push, get } from "firebase/database"
+import { getDatabase, ref, push, get } from 'firebase/database'
 // import { } from 'firebase/firestore'
 // import avatar from './assets/avatar.png'
 // import avatar1 from './assets/avatar-1.jpeg'
@@ -39,32 +39,19 @@ function App() {
   const [text, setText] = useState('')
   const [emoji, setEmoji] = useState('')
   const [openConversas, setOpenConversas] = useState(false)
-
+  const [desabilit, setDesabilit] = useState(false)
 
   const messageRef = collection(databaseApp, 'usuarios')
-  const QueryMessages = query(messageRef, orderBy('id', "asc"))
+  const QueryMessages = query(messageRef, orderBy('id', 'asc'))
   const [my_messages] = useCollectionData(QueryMessages, { idField: 'id' })
 
   const [user] = useAuthState(auth)
 
-  // console.log(`auth: ${{ auth }}`)
+  // console.log(`user: ${user}`)
 
   function handleWindow() {
     setIntro(true)
   }
-
-  async function AddDocs(u) {
-    await addDoc(
-      messageRef,
-      {
-        name: u.displayName,
-        avatar: u.photoURL
-      },
-      { marge: true }
-    )
-
-  }
-
 
   function setOpenFalas() {
     setOpenConversas(true)
@@ -104,15 +91,11 @@ function App() {
   function NewChat({ chatList, user }) {
     return (
       <>
-
         <div className="newChatContainer">
           <div className="newChat">
             <div className="newChat--Head">
               <div className="newChat--backbutton"></div>
-              <div className="newChat--list">
-
-
-              </div>
+              <div className="newChat--list"></div>
               <div className="newChat--headTitle">
                 <ArrowBackIcon
                   style={{ cursor: 'pointer' }}
@@ -124,8 +107,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div>
-            </div>
+            <div></div>
           </div>
           <div style={{ cursor: 'pointer' }} onClick={handleWindow}>
             <ChatListContacts />
@@ -135,43 +117,35 @@ function App() {
     )
   }
 
-
-
-
   async function AddDocs(u) {
     await addDoc(
       messageRef,
       {
+        uid: u.uid,
         name: u.displayName,
+        // name: "Cabaça",
         avatar: u.photoURL
+        // avatar: "Foto da cabaça"
       },
       { merge: true }
     )
-
   }
 
-
-
-
-
-
-  if (user === null) {
+  if (!auth.currentUser) {
     return <Login onReceive={user} />
   }
 
-  const { photoURL, uid, displayName } = auth.currentUser
+  const { photoURL, displayName, uid } = auth.currentUser
 
-  const u = { photoURL, displayName }
+  const u = { photoURL, displayName, uid }
+  console.log(`u ${u.displayName}`)
 
-  if (displayName === 'Gustavo') {
-
+  function AddOnClick() {
     AddDocs(u)
+    setDesabilit(true)
+
+    return alert('SHOW!!!!')
   }
-
-
-
-
-
 
   return (
     <div className="app-window">
@@ -179,7 +153,10 @@ function App() {
         <div>
           <SignOut />
 
-
+          <button disabled={desabilit} onClick={AddOnClick}>
+            CADASTRAR
+          </button>
+          {/* <button onClick={() => getUsers()}>LER USUARIOS</button> */}
         </div>
 
         {openConversas === true ? (
@@ -232,25 +209,16 @@ function App() {
               {/* <div className="chatlist">
 
               </div> */}
-
             </div>
             <div style={{ cursor: 'pointer' }} onClick={handleWindow}>
               {/* <ChatListItem /> */}
               <ChatRoom />
-
-
             </div>
-
           </>
-        )
-        }
-
-
-
+        )}
       </div>
 
       <div className="contentarea">
-
         {intro === false ? (
           <div className="main-container">
             <img src={whats} alt="novo" width="898" />
@@ -258,7 +226,6 @@ function App() {
         ) : (
           // <Chatwindow photoURL={photoURL} displayName={displayName} />
           <Chatwindow user={user} />
-
         )}
 
         {/* // ********** */}
@@ -276,17 +243,12 @@ function App() {
             // background: 'green'
           }}
         >
-
-
-
-
           <div
             style={{
               display: 'flex',
               alignItems: 'center'
             }}
           >
-
             {clicked === true ? (
               <div
                 style={{
