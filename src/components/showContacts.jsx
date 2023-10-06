@@ -37,7 +37,10 @@ export const ChatRoom = () => {
         <div style={{ marginTop: '3px', marginLeft: '5px' }}>
           {contacts.map((item) => {
             return (
-              <div style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}>
+              <div
+                key={item.id}
+                style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
+              >
                 <div
                   style={{
                     display: 'flex',

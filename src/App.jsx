@@ -148,7 +148,7 @@ function App() {
       return console.log(data)
     }
     if (data.idGoogle === uid) {
-      alert('Usuario ja existe!!')
+      alert('Usuario ja cadastrado!!')
     }
     console.log(`NOMBRE: ${data.idGoogle}`)
   }
