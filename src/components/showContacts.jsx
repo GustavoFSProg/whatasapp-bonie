@@ -21,6 +21,10 @@ function ShowContacts() {
 export const ChatRoom = () => {
   const [contacts, setContacts] = useState([])
 
+  const [user] = useAuthState(auth)
+
+  const { photoURL, displayName, uid } = auth.currentUser
+
   async function getContacts(e) {
     const { data } = await api.get('/get-all-users')
 
@@ -52,7 +56,11 @@ export const ChatRoom = () => {
               <div
                 key={item.id}
                 onClick={() =>
-                  setChatUsers({ user1: item.name, user2: 'Sissa', messages: 'Mues caros amigos!' })
+                  setChatUsers({
+                    user1: item.name,
+                    user2: displayName,
+                    messages: 'Mues caros amigos!'
+                  })
                 }
                 style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
               >
