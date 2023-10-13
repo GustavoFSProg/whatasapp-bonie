@@ -150,7 +150,7 @@ function App() {
     if (data.idGoogle === uid) {
       alert('Usuario ja cadastrado!!')
     }
-    console.log(`NOMBRE: ${data.idGoogle}`)
+    // console.log(`NOMBRE: ${data.idGoogle}`)
   }
 
   const { photoURL, displayName, uid } = auth.currentUser

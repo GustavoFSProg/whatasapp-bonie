@@ -27,6 +27,18 @@ export const ChatRoom = () => {
     setContacts(data)
   }
 
+  async function setChatUsers({ user1, user2, messages }) {
+    try {
+      const data = { users: [user1, user2], messages: [messages] }
+
+      const user = await api.post('/register-chats', data)
+
+      return alert('Sucesso!!')
+    } catch (error) {
+      return console.log(`ERROR: ${error}`)
+    }
+  }
+
   useEffect(() => {
     getContacts()
   }, [])
@@ -39,6 +51,9 @@ export const ChatRoom = () => {
             return (
               <div
                 key={item.id}
+                onClick={() =>
+                  setChatUsers({ user1: item.name, user2: 'Sissa', messages: 'Mues caros amigos!' })
+                }
                 style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
               >
                 <div
