@@ -1,6 +1,23 @@
+import { useEffect, useState } from 'react'
 import imageAvatar from '../assets/avatar.png'
+import api from '../api'
 
 function ChatListContacts() {
+  const [contacts, setContacts] = useState([])
+
+  // const [user] = useAuthState(auth)
+  // const { photoURL, displayName, uid } = auth.currentUser
+
+  async function RoomList(e) {
+    const { data } = await api.get('/get-all-room')
+
+    setContacts(data)
+  }
+
+  useEffect(() => {
+    RoomList()
+  }, [])
+
   return (
     <div
       style={{
@@ -24,21 +41,29 @@ function ChatListContacts() {
           borderBottom: '2px solid gray'
         }}
       >
-        <img style={{ borderRadius: '50%' }} src={imageAvatar} alt="foto" width="55" />
-        <div
-          style={{
-            display: 'flex',
-            marginTop: '10px',
-            marginLeft: '11px',
-            alignItems: 'flex-start',
-            width: '80%',
+        {contacts.map((item) => {
+          return (
+            <div
+              key={item.id}
+              style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  marginTop: '25px',
+                  alignItems: 'center'
+                }}
+                key={item.id}
+              >
+                {/* <img src={item.avatar} alt="iamgem" /> */}
 
-            fontSize: '14px',
-            flexDirection: 'column'
-          }}
-        >
-          <span> NOME DO CONTADO</span>
-        </div>
+                <span>{item.title}</span>
+                <span>{item.user2}</span>
+              </div>
+            </div>
+          )
+        })}
       </div>
       <div
         style={{

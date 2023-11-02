@@ -29,7 +29,7 @@ import ChatListContacts from './components/ChatListContacts'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { DoorBack } from '@mui/icons-material'
 import { getAuth } from 'firebase/auth'
-import ShowContacts, { ChatRoom } from './components/showContacts'
+import ShowContacts, { ChatUsersList } from './components/showContacts'
 import api from './api'
 
 function App() {
@@ -247,7 +247,7 @@ function App() {
             </div>
             <div style={{ cursor: 'pointer' }} onClick={handleWindow}>
               {/* <ChatListItem /> */}
-              <ChatRoom />
+              <ChatUsersList />
             </div>
           </>
         )}

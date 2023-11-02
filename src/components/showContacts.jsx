@@ -18,7 +18,7 @@ function ShowContacts() {
   )
 }
 
-export const ChatRoom = () => {
+export const ChatUsersList = () => {
   const [contacts, setContacts] = useState([])
 
   const [user] = useAuthState(auth)

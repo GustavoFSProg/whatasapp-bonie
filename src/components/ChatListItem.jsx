@@ -1,14 +1,17 @@
 import imageAvatar from '../assets/avatar.png'
-import { ChatRoom } from './showContacts'
+import { ChatUsersList } from './showContacts'
 
 function ChatListItem() {
   return (
     <div
       style={{
-        display: 'flex', width: '100%', marginTop: '10px',
-        flexDirection: 'column',
-      }}>
-      <ChatRoom />
+        display: 'flex',
+        width: '100%',
+        marginTop: '10px',
+        flexDirection: 'column'
+      }}
+    >
+      <ChatUsersList />
 
       {/* <div style={{
         display: 'flex',
