@@ -18,10 +18,14 @@ function ChatListContacts() {
   }
 
   async function getUser(id) {
-    const { data } = await api.get(`/get-one-user/${id}`)
+    const { data } = await api.get(`/get-user/${id}`)
+
+    if (!data) {
+      return alert('Usuario não encontrado!!')
+    }
 
     setName(data)
-    console.log(data)
+    console.log(name)
 
     return name
   }
