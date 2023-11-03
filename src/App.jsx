@@ -138,10 +138,10 @@ function App() {
 
   async function getOneUser() {
     const { data } = await api.get(`/get-one-user/${uid}`)
+    console.log(`data:${data}`)
 
     if (!data) {
       const user = { photoURL, displayName, uid }
-
       const data = await api.post('/register-users', user)
       alert('Usuário Cadastrado com sucesso!!')
 
