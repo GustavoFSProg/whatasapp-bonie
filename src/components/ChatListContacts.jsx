@@ -4,6 +4,7 @@ import api from '../api'
 
 function ChatListContacts() {
   const [contacts, setContacts] = useState([])
+  const [users, setUsers] = useState([])
   const [name, setName] = useState({})
 
   // const [user] = useAuthState(auth)
@@ -13,6 +14,24 @@ function ChatListContacts() {
     const { data } = await api.get('/get-all-room')
 
     setContacts(data)
+
+    console.log(data)
+  }
+
+  async function getUsers(e) {
+    const { data } = await api.get('/get-all-users')
+
+    setUsers(data)
+
+    console.log(data)
+  }
+
+  async function enterRoom(id) {
+    // const { data } = await api.get('/get-all-users')
+
+    alert(`Entrou: -- ${id}`)
+
+    setUsers(data)
 
     console.log(data)
   }
@@ -31,7 +50,7 @@ function ChatListContacts() {
   }
 
   useEffect(() => {
-    RoomList()
+    RoomList(), getUsers()
   }, [])
 
   return (
@@ -59,25 +78,66 @@ function ChatListContacts() {
       >
         {contacts.map((item) => {
           return (
-            <>
+            <div key={item.id}>
               <button onClick={() => getUser(item.user2)}>entrar</button>
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'column',
-
-                  height: 'auto',
+                  flexDirection: 'row',
+                  fontSize: '20px',
+                  height: '6rem',
                   width: '100%',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  marginLeft: '10px'
                 }}
               >
-                <span>{item.title}</span>
-                <span>{name.name}</span>
+                {/* <span>{item.title}</span> */}
                 <img src={name.avatar} alt="avatar" />
+                <span
+                  style={{
+                    display: 'flex',
+                    marginLeft: '8px'
+                  }}
+                >
+                  {name.name}
+                </span>
                 <br />
               </div>
               <br />
-            </>
+            </div>
+          )
+        })}
+
+        {users.map((item) => {
+          return (
+            <div key={item.id}>
+              <button onClick={() => enterRoom(item.id)}>Enter ROOM</button>
+
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  fontSize: '20px',
+                  height: '6rem',
+                  width: '100%',
+                  alignItems: 'center',
+                  marginLeft: '10px'
+                }}
+              >
+                {/* <span>{item.title}</span> */}
+                <img src={item.avatar} alt="avatar" />
+                <span
+                  style={{
+                    display: 'flex',
+                    marginLeft: '8px'
+                  }}
+                >
+                  {item.name}
+                </span>
+                <br />
+              </div>
+              <br />
+            </div>
           )
         })}
       </div>
