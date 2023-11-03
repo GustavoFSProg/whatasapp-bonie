@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
 import imageAvatar from '../assets/avatar.png'
 import api from '../api'
+import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import { auth, databaseApp } from '../firebaseConfig'
 
 function ChatListContacts() {
   const [contacts, setContacts] = useState([])
   const [users, setUsers] = useState([])
   const [name, setName] = useState({})
-
-  // const [user] = useAuthState(auth)
-  // const { photoURL, displayName, uid } = auth.currentUser
 
   async function RoomList(e) {
     const { data } = await api.get('/get-all-room')
@@ -27,13 +26,22 @@ function ChatListContacts() {
   }
 
   async function enterRoom(id) {
-    // const { data } = await api.get('/get-all-users')
+    try {
+      const { photoURL, displayName, uid } = auth.currentUser
 
-    alert(`Entrou: -- ${id}`)
+      const dados = {
+        user1: uid,
+        user2: id,
+        title: 'Titulo teste',
+        image: 'imagem - 01',
+        messages: ['Olá!', 'oiii']
+      }
+      await api.post('/register-chat-room', dados)
 
-    setUsers(data)
-
-    console.log(data)
+      alert(`Cadastrou a sala de conversas:`)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async function getUser(id) {
