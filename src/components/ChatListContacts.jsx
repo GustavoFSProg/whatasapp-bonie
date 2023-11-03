@@ -29,6 +29,12 @@ function ChatListContacts() {
     try {
       const { photoURL, displayName, uid } = auth.currentUser
 
+      const userData = await api.get(`/get-user-dois/${id}`)
+
+      if (userData) {
+        return alert('ja te sala!!')
+      }
+
       const dados = {
         user1: uid,
         user2: id,
