@@ -79,9 +79,7 @@ export const ChatUsersList = () => {
                 // }
                 style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
               >
-                <button onClick={() => sessionStorage.setItem('ROOM-ID', item.id)}>
-                  mensagens
-                </button>
+                <button onClick={() => sessionStorage.setItem('ROOM-ID', item.id)}>CHAT</button>
 
                 <div
                   style={{

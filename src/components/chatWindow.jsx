@@ -20,7 +20,7 @@ function Chatwindow() {
   }
 
   useEffect(() => {
-    RoomList()
+    // RoomList()
   }, [])
   return (
     <>
@@ -72,6 +72,8 @@ function Chatwindow() {
             <MoreVertIcon color="blue" style={{ display: 'flex', fontSize: '29px' }} />
           </div>
         </div>
+
+        <button onClick={() => RoomList()}>VER MENSAGENS</button>
       </div>
       <div
         // style={{ visibility: 'hidden' }}
@@ -87,12 +89,11 @@ function Chatwindow() {
             width: '280px'
           }}
         >
-          {rooms.title}
+          <h3>{rooms.title} </h3>
           <br />
           <br />
-          MENSAGENS:
-          <br />
-          {rooms.messages}
+          <h2> MENSAGENS: </h2>
+          <h3>{rooms.messages} </h3>
         </span>
 
         {/* <div style={{ marginTop: '50px' }}>
