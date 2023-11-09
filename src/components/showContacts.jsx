@@ -19,17 +19,17 @@ function ShowContacts() {
 }
 
 export const ChatUsersList = () => {
-  const [contacts, setContacts] = useState([])
+  const [room, setRoom] = useState([])
 
   const [user] = useAuthState(auth)
 
   const { photoURL, displayName, uid } = auth.currentUser
 
-  async function getContacts(e) {
-    const { data } = await api.get('/get-all-users')
+  // async function getContacts(e) {
+  //   const { data } = await api.get('/get-all-users')
 
-    setContacts(data)
-  }
+  //   setRoom(data)
+  // }
 
   async function setChatUsers({ user1, user2, messages }) {
     try {
@@ -43,15 +43,24 @@ export const ChatUsersList = () => {
     }
   }
 
+  async function RoomList(e) {
+    const { data } = await api.get('/get-all-room')
+
+    setRoom(data)
+
+    console.log(data)
+  }
+
   useEffect(() => {
-    getContacts()
+    // getContacts()
+    RoomList()
   }, [])
 
   return (
     <>
       <main style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
         <div style={{ marginTop: '3px', marginLeft: '5px' }}>
-          {contacts.map((item) => {
+          {room.map((item) => {
             return (
               <div
                 key={item.id}
@@ -73,9 +82,9 @@ export const ChatUsersList = () => {
                   }}
                   key={item.id}
                 >
-                  <img src={item.avatar} alt="imagem" />
-
-                  <span>{item.name}</span>
+                  <img src={item.image} alt="imagem" />
+                  <span>{item.title}</span>
+                  <span>{item.user2}</span>
                 </div>
               </div>
             )
