@@ -26,14 +26,14 @@ function ChatListContacts() {
     console.log(data)
   }
 
-  async function enterRoom() {
+  async function enterRoom(user2) {
     try {
       const { photoURL, displayName, uid } = auth.currentUser
 
       console.log(`uid: ${uid}`)
       // console.log(`user2: ${user2}`)
 
-      const { data } = await api.get(`/get-user-dois/${uid}/a39e760c-f5ce-44ca-a65b-7aac31547154`)
+      const { data } = await api.get(`/get-user-dois/${uid}/${user2}`)
       // const userData = await api.get(`/get-user-dois/${id}`)
       // setPessoa(data)
 
@@ -76,7 +76,7 @@ function ChatListContacts() {
   }
 
   useEffect(() => {
-    RoomList()
+    RoomList(), getUsers()
   }, [])
 
   return (
@@ -134,11 +134,11 @@ function ChatListContacts() {
           )
         })}
 
-        {contacts.map((item) => {
+        {users.map((item) => {
           return (
             <div key={item.id}>
-              <button onClick={() => enterRoom()}>Enter ROOM</button>
-              {/* {console.log(item)} */}
+              <button onClick={() => enterRoom(item.id)}>Enter ROOM</button>
+              {console.log(item)}
               <div
                 style={{
                   display: 'flex',
