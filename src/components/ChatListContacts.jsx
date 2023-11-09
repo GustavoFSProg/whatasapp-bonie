@@ -18,7 +18,7 @@ function ChatListContacts() {
     console.log(data)
   }
 
-  async function getUsers(e) {
+  async function getUsers() {
     const { data } = await api.get('/get-all-users')
 
     setUsers(data)
@@ -31,32 +31,42 @@ function ChatListContacts() {
       const { photoURL, displayName, uid } = auth.currentUser
 
       console.log(`uid: ${uid}`)
-      // console.log(`user2: ${user2}`)
+      console.log(`user2: ${user2}`)
 
       const { data } = await api.get(`/get-user-dois/${uid}/${user2}`)
       // const userData = await api.get(`/get-user-dois/${id}`)
       // setPessoa(data)
 
-      console.log(`userDataUm: ${data.title}`)
+      // console.log(`userDataUm: ${data.title}`)
 
-      if (!data) {
-        return console.log('Deu ERRO')
+      if (data === null) {
+        try {
+          const dados = {
+            user1: uid,
+            user2: user2,
+            title: 'Titulo NOVO',
+            image: 'imagem - 0002',
+            messages: ['Olá!', 'oiii']
+          }
+          await api.post('/register-chat-room', dados)
+
+          return alert('DEU Successo!')
+        } catch (error) {
+          return alert(`erro: ${error}`)
+        }
+
+        alert(`Cadastrou a sala de conversas:`)
+        //
+        console.log('Deu ERRO')
+      } else {
+        alert(`Encontrou a sala de conversas:`)
+
+        // setUsers(data)
       }
 
       // if (userData && userDataUm) {
       //   return alert('ja te sala!!')
       // }
-
-      // const dados = {
-      //   user1: uid,
-      //   user2: id,
-      //   title: 'Titulo teste',
-      //   image: 'imagem - 01',
-      //   messages: ['Olá!', 'oiii']
-      // }
-      // await api.post('/register-chat-room', dados)
-
-      alert(`Cadastrou a sala de conversas:`)
     } catch (error) {
       console.log(error)
     }
@@ -105,7 +115,7 @@ function ChatListContacts() {
         {contacts.map((item) => {
           return (
             <div key={item.id}>
-              <button onClick={() => getUsers(item.id)}>entrar</button>
+              {/* <button onClick={() => getUsers(item.id)}>entrar</button> */}
               <div
                 style={{
                   display: 'flex',
@@ -133,7 +143,6 @@ function ChatListContacts() {
             </div>
           )
         })}
-
         {users.map((item) => {
           return (
             <div key={item.id}>
