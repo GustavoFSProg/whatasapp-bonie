@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import '../App.css'
 import api from '../api'
 
-function Chatwindow() {
+function Chatwindow({ text }) {
   const room_id = sessionStorage.getItem('ROOM-ID') // const [list, setList] = useState([
   const [rooms, setRooms] = useState('')
 
@@ -101,6 +101,7 @@ function Chatwindow() {
             <MessageItem key={key} data={item} user={user} />
           ))}
         </div> */}
+        {text}
       </div>
     </>
   )
