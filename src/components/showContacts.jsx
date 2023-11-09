@@ -73,6 +73,8 @@ export const ChatUsersList = () => {
                 }
                 style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
               >
+                <button onClick={() => alert(item.messages)}>mensagens</button>
+
                 <div
                   style={{
                     display: 'flex',
