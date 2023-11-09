@@ -73,7 +73,7 @@ export const ChatUsersList = () => {
                   }}
                   key={item.id}
                 >
-                  <img src={item.avatar} alt="iamgem" />
+                  <img src={item.avatar} alt="imagem" />
 
                   <span>{item.name}</span>
                 </div>

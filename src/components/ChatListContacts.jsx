@@ -8,6 +8,7 @@ function ChatListContacts() {
   const [contacts, setContacts] = useState([])
   const [users, setUsers] = useState([])
   const [name, setName] = useState({})
+  const [pessoa, setPessoa] = useState({})
 
   async function RoomList(e) {
     const { data } = await api.get('/get-all-room')
@@ -25,24 +26,35 @@ function ChatListContacts() {
     console.log(data)
   }
 
-  async function enterRoom(id) {
+  async function enterRoom() {
     try {
       const { photoURL, displayName, uid } = auth.currentUser
 
-      const userData = await api.get(`/get-user-dois/${id}`)
+      console.log(`uid: ${uid}`)
+      // console.log(`user2: ${user2}`)
 
-      if (userData) {
-        return alert('ja te sala!!')
+      const { data } = await api.get(`/get-user-dois/${uid}/a39e760c-f5ce-44ca-a65b-7aac31547154`)
+      // const userData = await api.get(`/get-user-dois/${id}`)
+      // setPessoa(data)
+
+      console.log(`userDataUm: ${data.title}`)
+
+      if (!data) {
+        return console.log('Deu ERRO')
       }
 
-      const dados = {
-        user1: uid,
-        user2: id,
-        title: 'Titulo teste',
-        image: 'imagem - 01',
-        messages: ['Olá!', 'oiii']
-      }
-      await api.post('/register-chat-room', dados)
+      // if (userData && userDataUm) {
+      //   return alert('ja te sala!!')
+      // }
+
+      // const dados = {
+      //   user1: uid,
+      //   user2: id,
+      //   title: 'Titulo teste',
+      //   image: 'imagem - 01',
+      //   messages: ['Olá!', 'oiii']
+      // }
+      // await api.post('/register-chat-room', dados)
 
       alert(`Cadastrou a sala de conversas:`)
     } catch (error) {
@@ -50,8 +62,8 @@ function ChatListContacts() {
     }
   }
 
-  async function getUser(id) {
-    const { data } = await api.get(`/get-user/${id}`)
+  async function getRooms() {
+    const { data } = await api.get(`/get-all-room`)
 
     if (!data) {
       return alert('Usuario não encontrado!!')
@@ -64,7 +76,7 @@ function ChatListContacts() {
   }
 
   useEffect(() => {
-    RoomList(), getUsers()
+    RoomList()
   }, [])
 
   return (
@@ -93,7 +105,7 @@ function ChatListContacts() {
         {contacts.map((item) => {
           return (
             <div key={item.id}>
-              <button onClick={() => getUser(item.user2)}>entrar</button>
+              <button onClick={() => getUsers(item.id)}>entrar</button>
               <div
                 style={{
                   display: 'flex',
@@ -122,11 +134,11 @@ function ChatListContacts() {
           )
         })}
 
-        {users.map((item) => {
+        {contacts.map((item) => {
           return (
             <div key={item.id}>
-              <button onClick={() => enterRoom(item.id)}>Enter ROOM</button>
-
+              <button onClick={() => enterRoom()}>Enter ROOM</button>
+              {/* {console.log(item)} */}
               <div
                 style={{
                   display: 'flex',
@@ -146,7 +158,7 @@ function ChatListContacts() {
                     marginLeft: '8px'
                   }}
                 >
-                  {item.name}
+                  {item.user2}
                 </span>
                 <br />
               </div>
