@@ -261,7 +261,7 @@ function App() {
           </div>
         ) : (
           // <Chatwindow photoURL={photoURL} displayName={displayName} />
-          <Chatwindow user={user} />
+          <Chatwindow />
         )}
 
         {/* // ********** */}

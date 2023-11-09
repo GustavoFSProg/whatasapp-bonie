@@ -5,6 +5,7 @@ import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import api from '../api'
 import '../App.css'
+import Chatwindow from './chatWindow'
 
 function ShowContacts() {
   const [user] = useAuthState(auth)
@@ -35,13 +36,17 @@ export const ChatUsersList = () => {
     try {
       const data = { users: [user1, user2], messages: [messages] }
 
-      const user = await api.post('/register-chats', data)
+      const user = await api.post('Cregister-chats', data)
 
       return alert('Sucesso!!')
     } catch (error) {
       return console.log(`ERROR: ${error}`)
     }
   }
+
+  // function chatWindows() {
+  //   return <Chatwindow user="Fulano" />
+  // }
 
   async function RoomList(e) {
     const { data } = await api.get('/get-all-room')
@@ -64,16 +69,19 @@ export const ChatUsersList = () => {
             return (
               <div
                 key={item.id}
-                onClick={() =>
-                  setChatUsers({
-                    user1: item.name,
-                    user2: displayName,
-                    messages: 'Mues caros amigos!'
-                  })
-                }
+                // onClick={() => chatWindows(item.messages)}
+                // onClick={() =>
+                //   setChatUsers({
+                //     user1: item.name,
+                //     user2: displayName,
+                //     messages: 'Mues caros amigos!'
+                //   })
+                // }
                 style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
               >
-                <button onClick={() => alert(item.messages)}>mensagens</button>
+                <button onClick={() => sessionStorage.setItem('ROOM-ID', item.id)}>
+                  mensagens
+                </button>
 
                 <div
                   style={{

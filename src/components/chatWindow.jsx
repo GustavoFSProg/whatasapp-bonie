@@ -1,31 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import MessageItem from './MessageItem'
 import avatar1 from '../assets/avatar-1.jpeg'
 
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import SearchIcon from '@mui/icons-material/Search'
 import '../App.css'
+import api from '../api'
 
-function Chatwindow({ user, data }) {
-  const [list, setList] = useState([
-    { author: 123, body: 'Blablabla' },
-    { author: 123, body: 'Blablabla' },
-    { author: 1234, body: 'blueJeans' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' },
-    { author: 1234, body: 'Eu de novo' }
-  ])
+function Chatwindow() {
+  const room_id = sessionStorage.getItem('ROOM-ID') // const [list, setList] = useState([
+  const [rooms, setRooms] = useState('')
 
+  async function RoomList() {
+    const { data } = await api.get(`/get-one-room/${room_id}`)
+
+    setRooms(data)
+
+    console.log(`data: ${data.title}`)
+  }
+
+  useEffect(() => {
+    RoomList()
+  }, [])
   return (
     <>
       <div>
@@ -39,21 +35,20 @@ function Chatwindow({ user, data }) {
             height: '3rem',
             paddingBottom: '37px',
             marginTop: '45px',
-            marginLeft: '-10px',
-
+            marginLeft: '-10px'
           }}
         >
-          <img
+          {/* <img
             className="header-avatar"
-            src={user.photoURL}
+            src={user}
             alt="avatar"
             style={{
               width: '3.8rem',
               height: '3.8rem',
-              marginLeft: '-73px',
+              marginLeft: '-73px'
               // marginTop: '8px'
             }}
-          />
+          /> */}
           <span
             style={{
               marginLeft: '-42px',
@@ -64,7 +59,7 @@ function Chatwindow({ user, data }) {
               width: '280px'
             }}
           >
-            {user.displayName}
+            blanc
           </span>
           <div
             style={{
@@ -82,12 +77,29 @@ function Chatwindow({ user, data }) {
         // style={{ visibility: 'hidden' }}
         className="main-container"
       >
+        <span
+          style={{
+            marginLeft: '-42px',
+            // marginTop: '27px',
+            color: 'black',
+            fontFamily: 'Arial',
+            fontSize: '14px',
+            width: '280px'
+          }}
+        >
+          {rooms.title}
+          <br />
+          <br />
+          MENSAGENS:
+          <br />
+          {rooms.messages}
+        </span>
 
-        <div style={{ marginTop: '50px' }}>
+        {/* <div style={{ marginTop: '50px' }}>
           {list.map((item, key) => (
             <MessageItem key={key} data={item} user={user} />
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   )

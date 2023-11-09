@@ -34,7 +34,6 @@ function App() {
 
   const [user, setUser] = useState(null)
 
-
   let recognition = null
   let SpechRecgonition = window.SpechRecgonition || window.webkitSpechRecognition
 
@@ -45,7 +44,6 @@ function App() {
   function handleWindow() {
     setIntro(true)
   }
-
 
   function setOpenFalas() {
     setOpenConversas(true)
@@ -85,25 +83,23 @@ function App() {
     setText(e + emoji.emoji)
   }
 
-
   function NewChat({ chatList, user }) {
     return (
       <div className="newChat">
         <div className="newChat--Head">
           <div className="newChat--backbutton"></div>
-          <div className="newChat--list" >
-
-          </div>
+          <div className="newChat--list"></div>
           <div className="newChat--headTitle">
             <ArrowBackIcon onClick={() => setOpenConversas(false)} />
-            <div style={{ fontSize: '20px', marginLeft: '15px', fontFamily: 'Mooli' }}> Nova Conversa</div>
+            <div style={{ fontSize: '20px', marginLeft: '15px', fontFamily: 'Mooli' }}>
+              {' '}
+              Nova Conversa
+            </div>
           </div>
         </div>
-
       </div>
     )
   }
-
 
   // async function handleLoginData(u) {
   //   let newUser = {
@@ -117,7 +113,6 @@ function App() {
   //   return user
   // }
 
-
   // if (user === null) {
   //   return <Login onReceive={handleLoginData} />
   // }
@@ -126,16 +121,22 @@ function App() {
     return <SignIn onReceive={handleLoginData} />
   }
 
-
   return (
     <div className="app-window">
       <div className="sidebar">
-        {openConversas === true ? <NewChat user={user} chatlist={chatlist} /> : (
+        {openConversas === true ? (
+          <NewChat user={user} chatlist={chatlist} />
+        ) : (
           <header style={{ height: '7rem' }}>
             <img className="header-avatar" src={user.avatares} alt="avatar" />
 
             <div
-              style={{ display: 'flex', flexDirection: 'column', height: '1.5rem', width: '7.8rem' }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '1.5rem',
+                width: '7.8rem'
+              }}
             >
               <div className="header-buttons">
                 <div className="header-btn">
@@ -147,8 +148,6 @@ function App() {
             </div>
           </header>
         )}
-
-
 
         <div className="search-input">
           <input type="text" placeholder="Procurar ou começar uma nova conversa" />
@@ -174,22 +173,17 @@ function App() {
         <div className="chatlist">
           <div onClick={handleWindow}>
             <ChatList />
-
-
-
           </div>
-
         </div>
       </div>
 
       <div className="contentarea">
-
         {intro === false ? (
           <div className="main-container">
             <img src={whats} alt="novo" width="898" />
           </div>
         ) : (
-          <Chatwindow user={user} />
+          <Chatwindow user="CUSS" />
         )}
         <div
           style={{
