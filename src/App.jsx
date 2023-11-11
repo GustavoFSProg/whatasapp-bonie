@@ -37,7 +37,7 @@ function App() {
   const [listen, setListen] = useState(false)
   const [chatlist, setChatList] = useState([])
   const [intro, setIntro] = useState(false)
-  const [text, setText] = useState('')
+  const [text, setText] = useState([])
   const [emoji, setEmoji] = useState('')
   const [openConversas, setOpenConversas] = useState(false)
   const [desabilit, setDesabilit] = useState(false)
@@ -309,6 +309,12 @@ function App() {
                     defaultEmoji: '1f92a',
                     defaultCaption: 'Bit emoji araaaa'
                   }}
+                  categories={[
+                    {
+                      category: 'smileys_people',
+                      name: 'Faces...'
+                    }
+                  ]}
                 />
 
                 <ClearIcon
