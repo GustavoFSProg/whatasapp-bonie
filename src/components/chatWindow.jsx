@@ -19,6 +19,14 @@ function Chatwindow({ text }) {
     console.log(`data: ${data.title}`)
   }
 
+  async function getOneUserById(id) {
+    const { data } = await api.get(`/get-user-by-id/${id}`)
+    console.log(`data:${data.idGoogle}`)
+    console.log(`data:${data.avatar}`)
+
+    // console.log(`NOMBRE: ${data.idGoogle}`)
+  }
+
   useEffect(() => {
     // RoomList()
   }, [])
@@ -104,6 +112,20 @@ function Chatwindow({ text }) {
             <h3>{rooms.user2Messages} </h3>
           </div>
         </span>
+
+        <button
+          style={{
+            height: '30px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '150px',
+            fontSize: '14px',
+            display: 'flex'
+          }}
+          onClick={() => getOneUserById(rooms.user2)}
+        >
+          SEARCHING
+        </button>
 
         {/* <div style={{ marginTop: '50px' }}>
           {list.map((item, key) => (
