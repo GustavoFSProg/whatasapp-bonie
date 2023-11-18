@@ -92,8 +92,17 @@ function Chatwindow({ text }) {
           <h3>{rooms.title} </h3>
           <br />
           <br />
-          <h2> MENSAGENS: </h2>
-          <h3>{rooms.messages} </h3>
+          <div style={{ color: 'blue', fontSize: '17px' }}>
+            <h2> MENSAGENS USER 1: </h2>
+            <h3>{rooms.user1Messages} </h3>
+          </div>
+          <br />
+          <br />
+
+          <div style={{ color: 'darkgreen', fontSize: '17px' }}>
+            <h2> MENSAGENS USER 2: </h2>
+            <h3>{rooms.user2Messages} </h3>
+          </div>
         </span>
 
         {/* <div style={{ marginTop: '50px' }}>
