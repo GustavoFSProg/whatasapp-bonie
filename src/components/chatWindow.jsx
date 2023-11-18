@@ -10,6 +10,8 @@ import api from '../api'
 function Chatwindow({ text }) {
   const room_id = sessionStorage.getItem('ROOM-ID') // const [list, setList] = useState([
   const [rooms, setRooms] = useState('')
+  const [users, setUsers] = useState({})
+  const [usersDois, setUsersDois] = useState({})
 
   async function RoomList() {
     const { data } = await api.get(`/get-one-room/${room_id}`)
@@ -19,10 +21,22 @@ function Chatwindow({ text }) {
     console.log(`data: ${data.title}`)
   }
 
-  async function getOneUserById(id) {
-    const { data } = await api.get(`/get-user-by-id/${id}`)
-    console.log(`data:${data.idGoogle}`)
-    console.log(`data:${data.avatar}`)
+  async function getOneUserByIdUm(id) {
+    const { data } = await api.get(`/get-one-user/${id}`)
+    // console.log(`data:${data.idGoogle}`)
+    // console.log(`data:${data.avatar}`)
+
+    setUsers(data)
+
+    // console.log(`NOMBRE: ${data.idGoogle}`)
+  }
+
+  async function getOneUserByIdDois(id) {
+    const { data } = await api.get(`/get-one-user/${id}`)
+    // console.log(`data:${data.idGoogle}`)
+    // console.log(`data:${data.avatar}`)
+
+    setUsersDois(data)
 
     // console.log(`NOMBRE: ${data.idGoogle}`)
   }
@@ -102,6 +116,9 @@ function Chatwindow({ text }) {
           <br />
           <div style={{ color: 'blue', fontSize: '17px' }}>
             <h2> MENSAGENS USER 1: </h2>
+
+            <img src={users.avatar} alt="imagem" />
+
             <h3>{rooms.user1Messages} </h3>
           </div>
           <br />
@@ -109,6 +126,8 @@ function Chatwindow({ text }) {
 
           <div style={{ color: 'darkgreen', fontSize: '17px' }}>
             <h2> MENSAGENS USER 2: </h2>
+            <img src={usersDois.avatar} alt="imagem" />
+
             <h3>{rooms.user2Messages} </h3>
           </div>
         </span>
@@ -122,9 +141,25 @@ function Chatwindow({ text }) {
             fontSize: '14px',
             display: 'flex'
           }}
-          onClick={() => getOneUserById(rooms.user2)}
+          onClick={() => getOneUserByIdUm(rooms.user1)}
         >
-          SEARCHING
+          SEARCHING - UM
+        </button>
+        <br />
+        <br />
+        <br />
+        <button
+          style={{
+            height: '30px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '150px',
+            fontSize: '14px',
+            display: 'flex'
+          }}
+          onClick={() => getOneUserByIdDois(rooms.user2)}
+        >
+          SEARCHING - DOIS
         </button>
 
         {/* <div style={{ marginTop: '50px' }}>
