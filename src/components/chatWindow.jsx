@@ -114,21 +114,110 @@ function Chatwindow({ text }) {
           <h3>{rooms.title} </h3>
           <br />
           <br />
-          <div style={{ color: 'blue', fontSize: '17px' }}>
-            <h2> MENSAGENS USER 1: </h2>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingLeft: '30px',
+              paddingTop: '30px',
+              paddingBottom: '15px',
+              marginLeft: '20px',
+              borderRadius: '15px',
 
-            <img src={users.avatar} alt="imagem" />
+              color: 'blue',
+              fontSize: '17px',
+              width: '400px',
+              height: 'auto',
+              background: '#e6e6e6'
+            }}
+          >
+            <h4
+              style={{
+                marginTop: '-10px'
+              }}
+            >
+              USER 1:
+            </h4>
+            {/* <span> USER 1: </span> */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                // paddingLeft: '30px',
+                marginTop: '-33px',
+                // justifyContent: 'center',
 
-            <h3>{rooms.user1Messages} </h3>
+                color: 'blue',
+                fontSize: '14px'
+              }}
+            >
+              <img src={users.avatar} alt="imagem" />
+
+              <h3
+                style={{
+                  marginLeft: '8px',
+                  display: 'flex'
+                }}
+              >
+                {rooms.user1Messages}{' '}
+              </h3>
+            </div>
           </div>
           <br />
           <br />
 
-          <div style={{ color: 'darkgreen', fontSize: '17px' }}>
-            <h2> MENSAGENS USER 2: </h2>
-            <img src={usersDois.avatar} alt="imagem" />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingLeft: '30px',
+              paddingTop: '30px',
+              paddingBottom: '15px',
+              marginLeft: '430px',
+              borderRadius: '15px',
 
-            <h3>{rooms.user2Messages} </h3>
+              color: 'blue',
+              fontSize: '17px',
+              width: '400px',
+              height: 'auto',
+              background: '#c1f0c1'
+            }}
+          >
+            <h4
+              style={{
+                marginTop: '-10px'
+              }}
+            >
+              USER 2:
+            </h4>
+
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                // paddingLeft: '30px',
+                marginTop: '-33px',
+                // justifyContent: 'center',
+
+                color: 'blue',
+                fontSize: '14px'
+              }}
+            >
+              <img src={usersDois.avatar} alt="imagem" />
+
+              <h3
+                style={{
+                  marginLeft: '8px',
+                  display: 'flex'
+                }}
+              >
+                {rooms.user2Messages}{' '}
+              </h3>
+            </div>
           </div>
         </span>
 
