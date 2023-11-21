@@ -13,15 +13,9 @@ function Chatwindow({ text }) {
   const [users, setUsers] = useState({})
   const [usersDois, setUsersDois] = useState({})
 
-  async function RoomList() {
-    const { data } = await api.get(`/get-one-room/${room_id}`)
-
-    setRooms(data)
-
-    console.log(`data: ${data.title}`)
-  }
-
   async function getOneUserByIdUm(id) {
+    // const id = sessionStorage.getItem('user1')
+
     const { data } = await api.get(`/get-one-user/${id}`)
     // console.log(`data:${data.idGoogle}`)
     // console.log(`data:${data.avatar}`)
@@ -32,6 +26,49 @@ function Chatwindow({ text }) {
   }
 
   async function getOneUserByIdDois(id) {
+    // const id = sessionStorage.getItem('user2')
+
+    const { data } = await api.get(`/get-one-user/${id}`)
+    // console.log(`data:${data.idGoogle}`)
+    // console.log(`data:${data.avatar}`)
+
+    setUsersDois(data)
+
+    // console.log(`NOMBRE: ${data.idGoogle}`)
+  }
+
+  async function RoomList() {
+    const { data } = await api.get(`/get-one-room/${room_id}`)
+
+    setRooms(data)
+
+    // sessionStorage.setItem('user1', rooms.user1)
+    // sessionStorage.setItem('user2', rooms.user2)
+
+    console.log(`data: ${data.title}`)
+
+    getOneUserByIdUm(rooms.user1)
+
+    getOneUserByIdDois(rooms.user2)
+
+    // return console.log()
+  }
+
+  async function getOneUserByIdUm() {
+    const id = sessionStorage.getItem('user1')
+
+    const { data } = await api.get(`/get-one-user/${id}`)
+    // console.log(`data:${data.idGoogle}`)
+    // console.log(`data:${data.avatar}`)
+
+    setUsers(data)
+
+    // console.log(`NOMBRE: ${data.idGoogle}`)
+  }
+
+  async function getOneUserByIdDois() {
+    const id = sessionStorage.getItem('user2')
+
     const { data } = await api.get(`/get-one-user/${id}`)
     // console.log(`data:${data.idGoogle}`)
     // console.log(`data:${data.avatar}`)
@@ -173,14 +210,16 @@ function Chatwindow({ text }) {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
+              paddingRight: '30px',
               paddingLeft: '30px',
               paddingTop: '30px',
               paddingBottom: '15px',
               marginLeft: '430px',
               borderRadius: '15px',
-
               color: 'blue',
               fontSize: '17px',
+              // width: 'auto',
+              // maxWidth: '400px',
               width: '400px',
               height: 'auto',
               background: '#c1f0c1'
@@ -221,7 +260,7 @@ function Chatwindow({ text }) {
           </div>
         </span>
 
-        <button
+        {/* <button
           style={{
             height: '30px',
             alignItems: 'center',
@@ -230,14 +269,14 @@ function Chatwindow({ text }) {
             fontSize: '14px',
             display: 'flex'
           }}
-          onClick={() => getOneUserByIdUm(rooms.user1)}
+          onClick={() => getOneUserByIdUm()}
         >
           SEARCHING - UM
-        </button>
+        </button> */}
         <br />
         <br />
         <br />
-        <button
+        {/* <button
           style={{
             height: '30px',
             alignItems: 'center',
@@ -246,10 +285,10 @@ function Chatwindow({ text }) {
             fontSize: '14px',
             display: 'flex'
           }}
-          onClick={() => getOneUserByIdDois(rooms.user2)}
+          onClick={() => getOneUserByIdDois()}
         >
           SEARCHING - DOIS
-        </button>
+        </button> */}
 
         {/* <div style={{ marginTop: '50px' }}>
           {list.map((item, key) => (
