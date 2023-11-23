@@ -126,7 +126,7 @@ function Chatwindow({ text }) {
         // style={{ visibility: 'hidden' }}
         className="main-container"
       >
-        <span
+        {/* <span
           style={{
             marginLeft: '-42px',
             // marginTop: '27px',
@@ -135,69 +135,107 @@ function Chatwindow({ text }) {
             fontSize: '14px',
             width: '280px'
           }}
+        > */}
+        {/* <h3>{rooms.title} </h3> */}
+        <br />
+        <br />
+
+        {messageArray.map((item) => {
+          return (
+            <>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  paddingLeft: '20px',
+                  paddingTop: '20px',
+                  paddingBottom: '20px',
+                  marginLeft: '20px',
+                  borderRadius: '15px',
+                  alignItems: 'center',
+
+                  color: 'blue',
+                  fontSize: '17px',
+                  width: '400px',
+                  height: 'auto',
+                  background: '#e6e6e6'
+                }}
+              >
+                <h4
+                  style={{
+                    marginTop: '-10px'
+                  }}
+                >
+                  USER 1:
+                </h4>
+                <img style={{ marginRight: '15px' }} src={users.avatar} alt="imagem" />
+
+                {item}
+              </div>
+
+              <br />
+            </>
+          )
+        })}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            // paddingLeft: '30px',
+            marginTop: '-33px',
+            // justifyContent: 'center',
+
+            color: 'blue',
+            fontSize: '14px'
+          }}
         >
-          {/* <h3>{rooms.title} </h3> */}
-          <br />
-          <br />
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              paddingLeft: '30px',
-              paddingTop: '30px',
-              paddingBottom: '15px',
-              marginLeft: '20px',
-              borderRadius: '15px',
-
-              color: 'blue',
-              fontSize: '17px',
-              width: '400px',
-              height: 'auto',
-              background: '#e6e6e6'
-            }}
-          >
-            <h4
-              style={{
-                marginTop: '-10px'
-              }}
-            >
-              USER 1:
-            </h4>
-            {/* <span> USER 1: </span> */}
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                // paddingLeft: '30px',
-                marginTop: '-33px',
-                // justifyContent: 'center',
-
-                color: 'blue',
-                fontSize: '14px'
-              }}
-            >
+          {/* {messageArray.map((item) => {
+          return (
+            <>
               <img src={users.avatar} alt="imagem" />
 
-              <h3
+              <div
+                style={{
+                  background: 'yellow',
+                  display: 'flex',
+                  width: '15rem',
+                  flexDirection: 'row',
+                  marginLeft: '20px',
+                  height: 'auto',
+                  paddingLeft: '16px',
+                  paddingRight: '16px',
+                  paddingTop: '16px',
+                  paddingBottom: '16px'
+                }}
+              >
+                {item}
+              </div>
+
+              <br />
+            </>
+          )
+        })} */}
+
+          {/* <h3
                 style={{
                   marginLeft: '8px',
                   display: 'flex'
                 }}
-              >
-                {/* {messageArray.map(function (item) {
+              > */}
+          {/* {messageArray.map(function (item) {
                   return <p>{item}</p>
                 })} */}
-                <div
+          {/* <div
                   style={{
                     display: 'flex',
                     width: '15rem',
                     flexDirection: 'column',
                     height: 'auto'
                   }}
-                >
-                  {messageArray.map((item) => {
+                > */}
+          {/* {messageArray.map((item) => {
                     return (
                       <>
                         <div
@@ -221,81 +259,81 @@ function Chatwindow({ text }) {
                       </>
                     )
                   })}
-                </div>
-                {/* {rooms.user1Messages.forEach((element) => {
+                </div> */}
+          {/* {rooms.user1Messages.forEach((element) => {
                   return alert(element)
                 })} */}
-                <br />
-                <br />
-                {/* {() => getMessageUser1Array(rooms.user1Messages)} */}
-                {
-                  //   return (
-                  //     // <div key={item.id}>
-                  //     <p>{item}</p>
-                  //     // </div>
-                  //   )
-                  // })
-                }
-              </h3>
-            </div>
-          </div>
           <br />
           <br />
+          {/* {() => getMessageUser1Array(rooms.user1Messages)} */}
+          {
+            //   return (
+            //     // <div key={item.id}>
+            //     <p>{item}</p>
+            //     // </div>
+            //   )
+            // })
+          }
+          {/* </h3> */}
+        </div>
+        {/* </div> */}
+        <br />
+        <br />
+
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            paddingRight: '30px',
+            paddingLeft: '30px',
+            paddingTop: '30px',
+            paddingBottom: '15px',
+            marginLeft: '430px',
+            borderRadius: '15px',
+            color: 'blue',
+            fontSize: '17px',
+            // width: 'auto',
+            // maxWidth: '400px',
+            width: '400px',
+            height: 'auto',
+            background: '#c1f0c1'
+          }}
+        >
+          <h4
+            style={{
+              marginTop: '-10px'
+            }}
+          >
+            USER 2:
+          </h4>
 
           <div
             style={{
               display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              paddingRight: '30px',
-              paddingLeft: '30px',
-              paddingTop: '30px',
-              paddingBottom: '15px',
-              marginLeft: '430px',
-              borderRadius: '15px',
+              flexDirection: 'row',
+              alignItems: 'center',
+              // paddingLeft: '30px',
+              marginTop: '-33px',
+              // justifyContent: 'center',
+
               color: 'blue',
-              fontSize: '17px',
-              // width: 'auto',
-              // maxWidth: '400px',
-              width: '400px',
-              height: 'auto',
-              background: '#c1f0c1'
+              fontSize: '14px'
             }}
           >
-            <h4
+            <img src={usersDois.avatar} alt="imagem" />
+
+            <h3
               style={{
-                marginTop: '-10px'
+                marginLeft: '8px',
+                display: 'flex'
               }}
             >
-              USER 2:
-            </h4>
-
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                // paddingLeft: '30px',
-                marginTop: '-33px',
-                // justifyContent: 'center',
-
-                color: 'blue',
-                fontSize: '14px'
-              }}
-            >
-              <img src={usersDois.avatar} alt="imagem" />
-
-              <h3
-                style={{
-                  marginLeft: '8px',
-                  display: 'flex'
-                }}
-              >
-                {rooms.user2Messages}
-              </h3>
-            </div>
+              {rooms.user2Messages}
+            </h3>
           </div>
-        </span>
+        </div>
+        {/* </span> */}
         {/* {() => {
           for (var i = 0; i <= 2; i++) {
             console.log(rooms[i])
