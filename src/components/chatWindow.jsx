@@ -57,8 +57,8 @@ function Chatwindow({ text }) {
   }
 
   useEffect(() => {
-    // RoomList()
-  }, [])
+    RoomList()
+  }, [rooms])
   return (
     <>
       <div>
@@ -110,7 +110,7 @@ function Chatwindow({ text }) {
           </div>
         </div>
 
-        <button onClick={() => RoomList()}>VER MENSAGENS</button>
+        {/* <button onClick={() => RoomList()}>VER MENSAGENS</button> */}
       </div>
       <div
         // style={{ visibility: 'hidden' }}

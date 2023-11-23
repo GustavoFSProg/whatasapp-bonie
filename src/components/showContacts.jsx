@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import api from '../api'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
+import Chatwindow from './chatWindow'
 // import Chatwindow from './chatWindow'
 
 function ShowContacts() {
@@ -47,14 +48,11 @@ export const ChatUsersList = () => {
     }
   }
 
-  // function chatWindows() {
-  //   return <Chatwindow user="Fulano" />
-  // }
-
   async function goToChatWndow(id) {
     sessionStorage.setItem('ROOM-ID', id)
 
-    navigate('/')
+    // navigate('/chat-window')
+    return <Chatwindow text="bom-dia" />
 
     // console.log(data)
   }
