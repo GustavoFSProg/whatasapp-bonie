@@ -12,29 +12,22 @@ function Chatwindow({ text }) {
   const [rooms, setRooms] = useState('')
   const [users, setUsers] = useState({})
   const [usersDois, setUsersDois] = useState({})
+  const [messageArray, setMessageArray] = useState([])
 
   async function getOneUserByIdUm() {
     const id = sessionStorage.getItem('user1')
 
     const { data } = await api.get(`/get-one-user/${id}`)
-    // console.log(`data:${data.idGoogle}`)
-    // console.log(`data:${data.avatar}`)
 
     setUsers(data)
-
-    // console.log(`NOMBRE: ${data.idGoogle}`)
   }
 
   async function getOneUserByIdDois() {
     const id = sessionStorage.getItem('user2')
 
     const { data } = await api.get(`/get-one-user/${id}`)
-    // console.log(`data:${data.idGoogle}`)
-    // console.log(`data:${data.avatar}`)
 
     setUsersDois(data)
-
-    // console.log(`NOMBRE: ${data.idGoogle}`)
   }
 
   async function RoomList() {
@@ -47,22 +40,31 @@ function Chatwindow({ text }) {
     sessionStorage.setItem('user1', data.user1)
     sessionStorage.setItem('user2', data.user2)
 
-    // console.log(`data: ${data.title}`)
-
     getOneUserByIdUm(data.user1)
 
     getOneUserByIdDois(data.user2)
-
-    // return console.log()
   }
 
-  function getMessageUser1Array(rooms) {
-    for (var i = 0; i <= 3; i++) {
-      console.log(rooms[i])
-      // alert(rooms[i])
-    }
-    // return rooms
+  function getArrayMap(rooms) {
+    setMessageArray(
+      rooms.map((item, index) => {
+        return (
+          <>
+            <div key={index}>{item}</div>
+          </>
+        )
+      })
+    )
   }
+
+  // function getMessageUser1Array(rooms) {
+  //   for (var i = 0; i <= 2; i++) {
+  //     console.log(rooms[i])
+  //     setMessageArray(...rooms, rooms[i])
+  //     // alert(rooms[i])
+  //   }
+  //   return <p>{rooms}</p>
+  // }
 
   useEffect(() => {
     RoomList()
@@ -184,10 +186,45 @@ function Chatwindow({ text }) {
                   display: 'flex'
                 }}
               >
-                {rooms.user1Messages}
-                {/* {rooms.user1Messages.forEach(function (nome) {
-                return  alert(nome) */}
-                {/* })} */}
+                {/* {messageArray.map(function (item) {
+                  return <p>{item}</p>
+                })} */}
+                <div
+                  style={{
+                    display: 'flex',
+                    width: '15rem',
+                    flexDirection: 'column',
+                    height: 'auto'
+                  }}
+                >
+                  {messageArray.map((item) => {
+                    return (
+                      <>
+                        <div
+                          style={{
+                            background: 'yellow',
+                            display: 'flex',
+                            width: '15rem',
+                            flexDirection: 'row',
+                            marginLeft: '20px',
+                            height: 'auto',
+                            paddingLeft: '16px',
+                            paddingRight: '16px',
+                            paddingTop: '16px',
+                            paddingBottom: '16px'
+                          }}
+                        >
+                          {item}
+                        </div>
+
+                        <br />
+                      </>
+                    )
+                  })}
+                </div>
+                {/* {rooms.user1Messages.forEach((element) => {
+                  return alert(element)
+                })} */}
                 <br />
                 <br />
                 {/* {() => getMessageUser1Array(rooms.user1Messages)} */}
@@ -259,8 +296,42 @@ function Chatwindow({ text }) {
             </div>
           </div>
         </span>
+        {/* {() => {
+          for (var i = 0; i <= 2; i++) {
+            console.log(rooms[i])
+            // setMessageArray(...rooms, rooms[i])
+
+            alert(rooms[i])
+            // return <div>{rooms[i]}</div>
+          }
+        }} */}
+        {/* {rooms.map((item, index) => {
+          return (
+            <>
+              <div key={index}>{item}</div>
+            </>
+          )
+        })} */}
 
         <button
+          style={{
+            height: '30px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '150px',
+            fontSize: '14px',
+            display: 'flex'
+          }}
+          onClick={() => getArrayMap(rooms.user1Messages)}
+        >
+          MAPPING
+        </button>
+        <br />
+        <br />
+        <br />
+        <br />
+
+        {/* <button
           style={{
             height: '30px',
             alignItems: 'center',
@@ -272,9 +343,12 @@ function Chatwindow({ text }) {
           onClick={() => getMessageUser1Array(rooms.user1Messages)}
         >
           SEARCHING - UM
-        </button>
+        </button> */}
         <br />
         <br />
+        {messageArray.map((item) => {
+          return <div>{item}</div>
+        })}
         <br />
         {/* <button
           style={{
