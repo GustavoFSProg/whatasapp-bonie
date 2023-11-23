@@ -5,7 +5,8 @@ import { collection, query, orderBy, addDoc, limit } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import api from '../api'
 import '../App.css'
-import Chatwindow from './chatWindow'
+import { useNavigate } from 'react-router-dom'
+// import Chatwindow from './chatWindow'
 
 function ShowContacts() {
   const [user] = useAuthState(auth)
@@ -21,6 +22,8 @@ function ShowContacts() {
 
 export const ChatUsersList = () => {
   const [room, setRoom] = useState([])
+
+  const navigate = useNavigate()
 
   const [user] = useAuthState(auth)
 
@@ -47,6 +50,14 @@ export const ChatUsersList = () => {
   // function chatWindows() {
   //   return <Chatwindow user="Fulano" />
   // }
+
+  async function goToChatWndow(id) {
+    sessionStorage.setItem('ROOM-ID', id)
+
+    navigate('/')
+
+    // console.log(data)
+  }
 
   async function RoomList(e) {
     const { data } = await api.get('/get-all-room')
@@ -77,22 +88,30 @@ export const ChatUsersList = () => {
                 //     messages: 'Mues caros amigos!'
                 //   })
                 // }
-                style={{ display: 'flex', height: '65px', width: '100%', alignItems: 'center' }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+
+                  height: '65px',
+                  width: '100%',
+                  alignItems: 'center'
+                }}
               >
-                <button onClick={() => sessionStorage.setItem('ROOM-ID', item.id)}>CHAT</button>
+                <button onClick={() => goToChatWndow(item.id)}>CHAT</button>
 
                 <div
                   style={{
                     display: 'flex',
                     width: '100%',
-                    marginTop: '25px',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    marginLeft: '20px',
+                    fontSize: '21px'
                   }}
                   key={item.id}
                 >
-                  <img src={item.image} alt="imagem" />
+                  {/* <img src={item.image} alt="imagem" /> */}
                   <span>{item.title}</span>
-                  <span>{item.user2}</span>
+                  {/* <span>{item.user2}</span> */}
                 </div>
               </div>
             )

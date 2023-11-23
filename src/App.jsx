@@ -261,7 +261,7 @@ function App() {
           </div>
         ) : (
           // <Chatwindow photoURL={photoURL} displayName={displayName} />
-          <Chatwindow text={text} />
+          <Chatwindow text={text} id={() => sessionStorage.getItem()} />
         )}
 
         {/* // ********** */}

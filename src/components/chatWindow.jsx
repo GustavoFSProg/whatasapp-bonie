@@ -13,47 +13,6 @@ function Chatwindow({ text }) {
   const [users, setUsers] = useState({})
   const [usersDois, setUsersDois] = useState({})
 
-  async function getOneUserByIdUm(id) {
-    // const id = sessionStorage.getItem('user1')
-
-    const { data } = await api.get(`/get-one-user/${id}`)
-    // console.log(`data:${data.idGoogle}`)
-    // console.log(`data:${data.avatar}`)
-
-    setUsers(data)
-
-    // console.log(`NOMBRE: ${data.idGoogle}`)
-  }
-
-  async function getOneUserByIdDois(id) {
-    // const id = sessionStorage.getItem('user2')
-
-    const { data } = await api.get(`/get-one-user/${id}`)
-    // console.log(`data:${data.idGoogle}`)
-    // console.log(`data:${data.avatar}`)
-
-    setUsersDois(data)
-
-    // console.log(`NOMBRE: ${data.idGoogle}`)
-  }
-
-  async function RoomList() {
-    const { data } = await api.get(`/get-one-room/${room_id}`)
-
-    setRooms(data)
-
-    // sessionStorage.setItem('user1', rooms.user1)
-    // sessionStorage.setItem('user2', rooms.user2)
-
-    console.log(`data: ${data.title}`)
-
-    getOneUserByIdUm(rooms.user1)
-
-    getOneUserByIdDois(rooms.user2)
-
-    // return console.log()
-  }
-
   async function getOneUserByIdUm() {
     const id = sessionStorage.getItem('user1')
 
@@ -76,6 +35,25 @@ function Chatwindow({ text }) {
     setUsersDois(data)
 
     // console.log(`NOMBRE: ${data.idGoogle}`)
+  }
+
+  async function RoomList() {
+    const room_id = sessionStorage.getItem('ROOM-ID')
+
+    const { data } = await api.get(`/get-one-room/${room_id}`)
+
+    setRooms(data)
+
+    sessionStorage.setItem('user1', data.user1)
+    sessionStorage.setItem('user2', data.user2)
+
+    console.log(`data: ${data.title}`)
+
+    getOneUserByIdUm(data.user1)
+
+    getOneUserByIdDois(data.user2)
+
+    // return console.log()
   }
 
   useEffect(() => {
@@ -148,7 +126,7 @@ function Chatwindow({ text }) {
             width: '280px'
           }}
         >
-          <h3>{rooms.title} </h3>
+          {/* <h3>{rooms.title} </h3> */}
           <br />
           <br />
           <div
@@ -254,7 +232,7 @@ function Chatwindow({ text }) {
                   display: 'flex'
                 }}
               >
-                {rooms.user2Messages}{' '}
+                {rooms.user2Messages}
               </h3>
             </div>
           </div>
