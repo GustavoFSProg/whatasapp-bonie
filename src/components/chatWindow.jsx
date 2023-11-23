@@ -47,13 +47,21 @@ function Chatwindow({ text }) {
     sessionStorage.setItem('user1', data.user1)
     sessionStorage.setItem('user2', data.user2)
 
-    console.log(`data: ${data.title}`)
+    // console.log(`data: ${data.title}`)
 
     getOneUserByIdUm(data.user1)
 
     getOneUserByIdDois(data.user2)
 
     // return console.log()
+  }
+
+  function getMessageUser1Array(rooms) {
+    for (var i = 0; i <= 3; i++) {
+      console.log(rooms[i])
+      // alert(rooms[i])
+    }
+    // return rooms
   }
 
   useEffect(() => {
@@ -176,7 +184,21 @@ function Chatwindow({ text }) {
                   display: 'flex'
                 }}
               >
-                {rooms.user1Messages}{' '}
+                {rooms.user1Messages}
+                {/* {rooms.user1Messages.forEach(function (nome) {
+                return  alert(nome) */}
+                {/* })} */}
+                <br />
+                <br />
+                {/* {() => getMessageUser1Array(rooms.user1Messages)} */}
+                {
+                  //   return (
+                  //     // <div key={item.id}>
+                  //     <p>{item}</p>
+                  //     // </div>
+                  //   )
+                  // })
+                }
               </h3>
             </div>
           </div>
@@ -238,7 +260,7 @@ function Chatwindow({ text }) {
           </div>
         </span>
 
-        {/* <button
+        <button
           style={{
             height: '30px',
             alignItems: 'center',
@@ -247,10 +269,10 @@ function Chatwindow({ text }) {
             fontSize: '14px',
             display: 'flex'
           }}
-          onClick={() => getOneUserByIdUm()}
+          onClick={() => getMessageUser1Array(rooms.user1Messages)}
         >
           SEARCHING - UM
-        </button> */}
+        </button>
         <br />
         <br />
         <br />

@@ -62,13 +62,13 @@ export const ChatUsersList = () => {
 
     setRoom(data)
 
-    console.log(data)
+    // console.log(data)
   }
 
   useEffect(() => {
     // getContacts()
     RoomList()
-  }, [])
+  }, [room])
 
   return (
     <>
