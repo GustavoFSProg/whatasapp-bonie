@@ -161,6 +161,7 @@ function Chatwindow({ text }) {
                   height: 'auto',
                   background: '#e6e6e6'
                 }}
+                key={item}
               >
                 <h4
                   style={{
@@ -384,9 +385,9 @@ function Chatwindow({ text }) {
         </button> */}
         <br />
         <br />
-        {messageArray.map((item) => {
-          return <div>{item}</div>
-        })}
+        {/* {messageArray.map((item) => {
+          return <div key={null}>{item}</div>
+        })} */}
         <br />
         {/* <button
           style={{
